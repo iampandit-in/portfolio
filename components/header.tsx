@@ -2,9 +2,9 @@ import { Brackets, MapPin } from "lucide-react";
 
 export default function Header() {
   return (
-    <div>
+    <div className="px-4">
       <div>
-        <h1 className="hover:text-primary mt-8 mb-3 text-4xl transition-all">
+        <h1 className="hover:text-primary mt-8 mb-3 text-2xl transition-all md:text-3xl">
           Pandit Pawar
         </h1>
       </div>

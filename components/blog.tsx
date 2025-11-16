@@ -8,7 +8,7 @@ import {
 
 export default function Blog() {
   return (
-    <div className="mt-6">
+    <div className="mt-6 px-4">
       <h1 className="hover hover:text-primary text-xl font-bold transition-all">
         + Blog
       </h1>

@@ -5,12 +5,12 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Menu } from "lucide-react";
 
 export default function Navbar() {
   return (
     <header className="fixed top-0 right-0 left-0 z-50 w-full border-b backdrop-blur-md">
-      <div className="mx-auto flex max-w-5xl items-center justify-between py-4">
+      <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-4">
         <Link className="flex items-center gap-3" href={"/"}>
           <Popover>
             <PopoverTrigger className="cursor-pointer">
@@ -51,7 +51,7 @@ export default function Navbar() {
           </Popover>
           <div></div>
         </Link>
-        <nav className="flex items-center gap-4">
+        <nav className="hidden items-center gap-4 md:flex">
           <Link
             className="group flex items-center gap-2 transition-all hover:text-red-400"
             href={"/"}
@@ -92,6 +92,9 @@ export default function Navbar() {
               className="transition-all group-hover:mb-1"
             />
           </Link>
+        </nav>
+        <nav className="md:hidden">
+          <Menu />
         </nav>
       </div>
     </header>
