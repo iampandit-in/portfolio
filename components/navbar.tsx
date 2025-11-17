@@ -23,7 +23,7 @@ export default function Navbar() {
       <div className="mx-auto flex max-w-4xl items-center justify-between px-4 py-4">
         <Link className="flex items-center gap-3" href={"/"}>
           <Popover>
-            <PopoverTrigger className="cursor-pointer">
+            <PopoverTrigger className="flex cursor-pointer items-center gap-4 outline-none">
               <Image
                 src={"/cool-pandit.webp"}
                 alt="logo"
@@ -31,6 +31,7 @@ export default function Navbar() {
                 height={100}
                 className="h-9 w-9 rounded-full object-cover"
               />
+              <span className="font-medium md:text-xl">Pandit Pawar</span>
             </PopoverTrigger>
             <PopoverContent className="flex min-w-md gap-4">
               <Image
@@ -120,7 +121,7 @@ export default function Navbar() {
                   <Link href={"/projects"}>Projects</Link>
                 </SheetClose>
                 <SheetClose asChild>
-                  <Link href={"/blog"}>Blog</Link>
+                  <Link href={"/blogs"}>Blog</Link>
                 </SheetClose>
                 <SheetClose asChild>
                   <Link href={"/connect"}>Connect</Link>

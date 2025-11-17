@@ -7,13 +7,12 @@ export default function Blog() {
     <div>
       <div className="mx-auto mb-4 max-w-4xl p-4">
         <div className="flex items-center justify-between">
-          <h1 className="hover hover:text-primary text-lg font-medium transition-all">
+          <h1 className="hover hover:text-primary text-lg font-medium transition-all md:text-xl">
             + Blogs
           </h1>
           <Link
-            href="https://github.com/iampandit-in"
-            target="_blank"
-            className="hover:text-primary group flex items-center gap-2 text-sm transition-all"
+            href="/blogs"
+            className="hover:text-primary group flex items-center gap-2 text-sm transition-all md:text-base"
           >
             All Blogs
             <ArrowUpRight
@@ -26,7 +25,7 @@ export default function Blog() {
           <Card>
             <CardContent>
               <Link
-                className="group text-muted-foreground flex items-center justify-between gap-2 text-sm transition-all hover:text-red-400"
+                className="group text-muted-foreground flex items-center justify-between gap-2 text-sm transition-all hover:text-red-400 md:text-base"
                 href={"/"}
               >
                 Fullstack E-commerce Platform for Fashion Brand
@@ -40,7 +39,7 @@ export default function Blog() {
           <Card>
             <CardContent>
               <Link
-                className="group text-muted-foreground flex items-center justify-between gap-2 text-sm transition-all hover:text-red-400"
+                className="group text-muted-foreground flex items-center justify-between gap-2 text-sm transition-all hover:text-red-400 md:text-base"
                 href={"/"}
               >
                 Built a real-time chat application using React.js, Node.js, and
@@ -55,7 +54,7 @@ export default function Blog() {
           <Card>
             <CardContent>
               <Link
-                className="group text-muted-foreground flex items-center justify-between gap-2 text-sm transition-all hover:text-red-400"
+                className="group text-muted-foreground flex items-center justify-between gap-2 text-sm transition-all hover:text-red-400 md:text-base"
                 href={"/"}
               >
                 Built a fullstack blogging platform using React.js, Node.js, and

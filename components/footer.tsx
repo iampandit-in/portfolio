@@ -7,10 +7,10 @@ export default function Footer() {
       <div className="text-muted-foreground mx-auto max-w-4xl p-4">
         <footer className="flex items-center justify-between">
           <div>
-            <p className="text-sm">Pandit Pawar &copy; 2025</p>
+            <p className="text-sm md:text-lg">Pandit Pawar &copy; 2025</p>
             <Link
               href={"/about"}
-              className="group hover:text-primary flex items-center gap-2 text-sm transition-all"
+              className="group hover:text-primary flex items-center gap-2 text-sm transition-all md:text-base"
             >
               About me{" "}
               <ArrowUpRight
@@ -22,7 +22,7 @@ export default function Footer() {
           <div className="mt-2 flex justify-center gap-4">
             <div>
               <Link
-                className="group hover:text-primary flex items-center gap-2 text-sm transition-all"
+                className="group hover:text-primary flex items-center gap-2 text-sm transition-all md:text-lg"
                 href="https://github.com/panditpawar"
               >
                 Github
@@ -32,7 +32,7 @@ export default function Footer() {
                 />
               </Link>
               <Link
-                className="hover:text-primary group flex items-center gap-2 text-sm transition-all"
+                className="hover:text-primary group flex items-center gap-2 text-sm transition-all md:text-lg"
                 href="https://www.linkedin.com/in/pandit-pawar-634b621ba/"
               >
                 Linked In
@@ -42,7 +42,7 @@ export default function Footer() {
                 />
               </Link>
               <Link
-                className="hover:text-primary group flex items-center gap-2 text-sm transition-all"
+                className="hover:text-primary group flex items-center gap-2 text-sm transition-all md:text-lg"
                 href="https://twitter.com/panditpawar"
               >
                 Twitter

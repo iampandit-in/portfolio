@@ -21,13 +21,12 @@ export default function Projects() {
     <div>
       <div className="mx-auto mt-4 max-w-4xl px-4">
         <div className="flex items-center justify-between">
-          <h1 className="hover hover:text-primary text-lg font-medium transition-all">
+          <h1 className="hover hover:text-primary text-lg font-medium transition-all md:text-xl">
             + Projects
           </h1>
           <Link
-            href="https://github.com/iampandit-in"
-            target="_blank"
-            className="hover:text-primary group flex items-center gap-2 text-sm transition-all"
+            href="/projects"
+            className="hover:text-primary group flex items-center gap-2 text-sm transition-all md:text-base"
           >
             All Projects
             <ArrowUpRight
@@ -41,12 +40,12 @@ export default function Projects() {
             <CarouselItem className="md:basis-1/2">
               <Card>
                 <CardHeader>
-                  <CardTitle className="text-primary/90">
+                  <CardTitle className="text-primary/90 md:text-lg">
                     Real-time Chat Application
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-muted-foreground -mt-4 text-sm">
+                  <p className="text-muted-foreground -mt-4 text-sm md:text-base">
                     Built a real-time chat application using React.js, Node.js,
                     and WebSockets. Implemented features such as user
                     authentication, chat rooms.
@@ -84,12 +83,12 @@ export default function Projects() {
             <CarouselItem className="md:basis-1/2">
               <Card>
                 <CardHeader>
-                  <CardTitle className="text-primary/90">
+                  <CardTitle className="text-primary/90 md:text-lg">
                     Fullstack Blogging Platform
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-muted-foreground -mt-4 text-sm">
+                  <p className="text-muted-foreground -mt-4 text-sm md:text-base">
                     Built a fullstack blogging platform using React.js, Node.js,
                     and MongoDB. Implemented features such as user
                     authentication, blog post creation, and comment system.
@@ -127,12 +126,12 @@ export default function Projects() {
             <CarouselItem className="md:basis-1/2">
               <Card>
                 <CardHeader>
-                  <CardTitle className="text-primary/90">
+                  <CardTitle className="text-primary/90 text-lg">
                     Backend API for Social Media.
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-muted-foreground -mt-4 text-sm">
+                  <p className="text-muted-foreground -mt-4 text-sm md:text-base">
                     Built a backend API using Node.js, Express.js, and MongoDB.
                     Implemented features such as user authentication, data
                     retrieval, and data manipulation.
