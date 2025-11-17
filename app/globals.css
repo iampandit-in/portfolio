@@ -152,8 +152,8 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
 
-  --font-sans: Chivo, ui-sans-serif, sans-serif, system-ui;
-  --font-mono: Chivo Mono, ui-monospace, monospace;
+  --font-sans: geist, ui-sans-serif, sans-serif, system-ui;
+  --font-mono:  geist mono, Jetbrains Mono, Chivo Mono, ui-monospace, monospace;
   --font-serif: IBM Plex Serif, ui-serif, serif;
 
   --radius-sm: calc(var(--radius) - 4px);

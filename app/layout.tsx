@@ -5,6 +5,7 @@ import {
   Chivo,
   Chivo_Mono,
   IBM_Plex_Mono,
+  JetBrains_Mono,
 } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/navbar";
@@ -13,6 +14,11 @@ const chivo = Chivo({
   variable: "--font-chivo",
   subsets: ["latin"],
   weight: ["400", "700"],
+});
+
+const jetBrains = JetBrains_Mono({
+  variable: "--font-jetbrains-mono",
+  subsets: ["latin"],
 });
 
 const chivoMono = Chivo_Mono({
@@ -52,7 +58,7 @@ export default function RootLayout({
     <html lang="en">
       <meta name="apple-mobile-web-app-title" content="Pandit" />
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${chivo.variable} ${chivoMono.variable} ${ibmPlexMono.variable} dark text-primary-foreground/80 font-mono antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${jetBrains.variable} ${chivo.variable} ${chivoMono.variable} ${ibmPlexMono.variable} dark text-primary-foreground/80 font-mono antialiased`}
       >
         <Navbar />
         {children}

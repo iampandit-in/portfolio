@@ -21,16 +21,13 @@ export default function Projects() {
     <div>
       <div className="mx-auto mt-4 max-w-4xl px-4">
         <div className="flex items-center justify-between">
-          <h1 className="hover hover:text-primary text-xl font-medium transition-all">
+          <h1 className="hover hover:text-primary text-lg font-medium transition-all">
             + Projects
-            <span className="text-muted-foreground ml-2 text-sm font-medium md:ml-4">
-              (Swipe Left)
-            </span>
           </h1>
           <Link
             href="https://github.com/iampandit-in"
             target="_blank"
-            className="hover:text-primary group flex items-center gap-2 transition-all"
+            className="hover:text-primary group flex items-center gap-2 text-sm transition-all"
           >
             All Projects
             <ArrowUpRight
@@ -49,51 +46,37 @@ export default function Projects() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-muted-foreground -mt-4">
+                  <p className="text-muted-foreground -mt-4 text-sm">
                     Built a real-time chat application using React.js, Node.js,
                     and WebSockets. Implemented features such as user
                     authentication, chat rooms.
                   </p>
                 </CardContent>
                 <CardFooter>
-                  <div className="flex flex-row flex-wrap items-center gap-12">
-                    <div className="*:data-[slot=avatar]:ring-background flex -space-x-2 *:data-[slot=avatar]:ring-2">
-                      <Avatar>
-                        <AvatarImage
-                          src="https://github.com/nextjs.png"
-                          alt="@shadcn"
-                        />
-                        <AvatarFallback>CN</AvatarFallback>
-                      </Avatar>
-                      <Avatar>
-                        <AvatarImage
-                          src="https://github.com/react.png"
-                          alt="@maxleiter"
-                        />
-                        <AvatarFallback>LR</AvatarFallback>
-                      </Avatar>
-                      <Avatar>
-                        <AvatarImage
-                          src="https://github.com/tailwindcss.png"
-                          alt="@evilrabbit"
-                        />
-                        <AvatarFallback>ER</AvatarFallback>
-                      </Avatar>
-                      <Avatar>
-                        <AvatarImage
-                          src="https://github.com/postgresql.png"
-                          alt="@evilrabbit"
-                        />
-                        <AvatarFallback>ER</AvatarFallback>
-                      </Avatar>
-                      <Avatar>
-                        <AvatarImage
-                          src="https://github.com/mongodb.png"
-                          alt="@evilrabbit"
-                        />
-                        <AvatarFallback>ER</AvatarFallback>
-                      </Avatar>
-                    </div>
+                  <div className="flex -space-x-2">
+                    <Avatar className="border-background h-6 w-6 border">
+                      <AvatarImage
+                        src="https://github.com/nextjs.png"
+                        alt="@shadcn"
+                        className="rounded-full p-0"
+                      />
+                      <AvatarFallback>CN</AvatarFallback>
+                    </Avatar>
+                    <Avatar className="border-background h-6 w-6 border">
+                      <AvatarImage
+                        src="https://github.com/react.png"
+                        alt="@maxleiter"
+                        className="rounded-full p-0"
+                      />
+                      <AvatarFallback>LR</AvatarFallback>
+                    </Avatar>
+                    <Avatar className="border-background h-6 w-6 border">
+                      <AvatarImage
+                        src="https://github.com/tailwindcss.png"
+                        alt="@evilrabbit"
+                      />
+                      <AvatarFallback>ER</AvatarFallback>
+                    </Avatar>
                   </div>
                 </CardFooter>
               </Card>
@@ -106,51 +89,37 @@ export default function Projects() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-muted-foreground -mt-4">
+                  <p className="text-muted-foreground -mt-4 text-sm">
                     Built a fullstack blogging platform using React.js, Node.js,
                     and MongoDB. Implemented features such as user
                     authentication, blog post creation, and comment system.
                   </p>
                 </CardContent>
                 <CardFooter>
-                  <div className="flex flex-row flex-wrap items-center gap-12">
-                    <div className="*:data-[slot=avatar]:ring-background flex -space-x-2 *:data-[slot=avatar]:ring-2">
-                      <Avatar>
-                        <AvatarImage
-                          src="https://github.com/nextjs.png"
-                          alt="@shadcn"
-                        />
-                        <AvatarFallback>CN</AvatarFallback>
-                      </Avatar>
-                      <Avatar>
-                        <AvatarImage
-                          src="https://github.com/react.png"
-                          alt="@maxleiter"
-                        />
-                        <AvatarFallback>LR</AvatarFallback>
-                      </Avatar>
-                      <Avatar>
-                        <AvatarImage
-                          src="https://github.com/tailwindcss.png"
-                          alt="@evilrabbit"
-                        />
-                        <AvatarFallback>ER</AvatarFallback>
-                      </Avatar>
-                      <Avatar>
-                        <AvatarImage
-                          src="https://github.com/postgresql.png"
-                          alt="@evilrabbit"
-                        />
-                        <AvatarFallback>ER</AvatarFallback>
-                      </Avatar>
-                      <Avatar>
-                        <AvatarImage
-                          src="https://github.com/mongodb.png"
-                          alt="@evilrabbit"
-                        />
-                        <AvatarFallback>ER</AvatarFallback>
-                      </Avatar>
-                    </div>
+                  <div className="flex -space-x-2">
+                    <Avatar className="border-background h-6 w-6 border">
+                      <AvatarImage
+                        src="https://github.com/nextjs.png"
+                        alt="@shadcn"
+                        className="rounded-full p-0"
+                      />
+                      <AvatarFallback>CN</AvatarFallback>
+                    </Avatar>
+                    <Avatar className="border-background h-6 w-6 border">
+                      <AvatarImage
+                        src="https://github.com/react.png"
+                        alt="@maxleiter"
+                        className="rounded-full p-0"
+                      />
+                      <AvatarFallback>LR</AvatarFallback>
+                    </Avatar>
+                    <Avatar className="border-background h-6 w-6 border">
+                      <AvatarImage
+                        src="https://github.com/tailwindcss.png"
+                        alt="@evilrabbit"
+                      />
+                      <AvatarFallback>ER</AvatarFallback>
+                    </Avatar>
                   </div>
                 </CardFooter>
               </Card>
@@ -159,55 +128,41 @@ export default function Projects() {
               <Card>
                 <CardHeader>
                   <CardTitle className="text-primary/90">
-                    Backend API for Social Media Platform
+                    Backend API for Social Media.
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-muted-foreground -mt-4">
+                  <p className="text-muted-foreground -mt-4 text-sm">
                     Built a backend API using Node.js, Express.js, and MongoDB.
                     Implemented features such as user authentication, data
                     retrieval, and data manipulation.
                   </p>
                 </CardContent>
                 <CardFooter>
-                  <div className="flex flex-row flex-wrap items-center gap-12">
-                    <div className="*:data-[slot=avatar]:ring-background flex -space-x-2 *:data-[slot=avatar]:ring-2">
-                      <Avatar>
-                        <AvatarImage
-                          src="https://github.com/nextjs.png"
-                          alt="@shadcn"
-                        />
-                        <AvatarFallback>CN</AvatarFallback>
-                      </Avatar>
-                      <Avatar>
-                        <AvatarImage
-                          src="https://github.com/react.png"
-                          alt="@maxleiter"
-                        />
-                        <AvatarFallback>LR</AvatarFallback>
-                      </Avatar>
-                      <Avatar>
-                        <AvatarImage
-                          src="https://github.com/tailwindcss.png"
-                          alt="@evilrabbit"
-                        />
-                        <AvatarFallback>ER</AvatarFallback>
-                      </Avatar>
-                      <Avatar>
-                        <AvatarImage
-                          src="https://github.com/postgresql.png"
-                          alt="@evilrabbit"
-                        />
-                        <AvatarFallback>ER</AvatarFallback>
-                      </Avatar>
-                      <Avatar>
-                        <AvatarImage
-                          src="https://github.com/mongodb.png"
-                          alt="@evilrabbit"
-                        />
-                        <AvatarFallback>ER</AvatarFallback>
-                      </Avatar>
-                    </div>
+                  <div className="flex -space-x-2">
+                    <Avatar className="border-background h-6 w-6 border">
+                      <AvatarImage
+                        src="https://github.com/nextjs.png"
+                        alt="@shadcn"
+                        className="rounded-full p-0"
+                      />
+                      <AvatarFallback>CN</AvatarFallback>
+                    </Avatar>
+                    <Avatar className="border-background h-6 w-6 border">
+                      <AvatarImage
+                        src="https://github.com/react.png"
+                        alt="@maxleiter"
+                        className="rounded-full p-0"
+                      />
+                      <AvatarFallback>LR</AvatarFallback>
+                    </Avatar>
+                    <Avatar className="border-background h-6 w-6 border">
+                      <AvatarImage
+                        src="https://github.com/tailwindcss.png"
+                        alt="@evilrabbit"
+                      />
+                      <AvatarFallback>ER</AvatarFallback>
+                    </Avatar>
                   </div>
                 </CardFooter>
               </Card>
