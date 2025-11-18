@@ -40,7 +40,7 @@ export default function Projects() {
             <CarouselItem className="md:basis-1/2">
               <Card>
                 <CardHeader>
-                  <CardTitle className="text-primary/90 md:text-lg">
+                  <CardTitle className="hover:text-primary/90 transition-all md:text-lg">
                     Real-time Chat Application
                   </CardTitle>
                 </CardHeader>
@@ -83,7 +83,7 @@ export default function Projects() {
             <CarouselItem className="md:basis-1/2">
               <Card>
                 <CardHeader>
-                  <CardTitle className="text-primary/90 md:text-lg">
+                  <CardTitle className="hover:text-primary/90 transition-all md:text-lg">
                     Fullstack Blogging Platform
                   </CardTitle>
                 </CardHeader>
@@ -126,7 +126,7 @@ export default function Projects() {
             <CarouselItem className="md:basis-1/2">
               <Card>
                 <CardHeader>
-                  <CardTitle className="text-primary/90 text-lg">
+                  <CardTitle className="hover:text-primary/90 text-lg transition-all">
                     Backend API for Social Media.
                   </CardTitle>
                 </CardHeader>
