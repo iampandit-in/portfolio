@@ -25,7 +25,7 @@ export default function Blog() {
           <Card>
             <CardContent>
               <Link
-                className="group text-muted-foreground flex items-center justify-between gap-2 text-sm transition-all hover:text-red-400 md:text-base"
+                className="group flex items-center justify-between gap-2 text-sm transition-all hover:text-red-400 md:text-base"
                 href={"/"}
               >
                 Fullstack E-commerce Platform for Fashion Brand
@@ -39,7 +39,7 @@ export default function Blog() {
           <Card>
             <CardContent>
               <Link
-                className="group text-muted-foreground flex items-center justify-between gap-2 text-sm transition-all hover:text-red-400 md:text-base"
+                className="group flex items-center justify-between gap-2 text-sm transition-all hover:text-red-400 md:text-base"
                 href={"/"}
               >
                 Built a real-time chat application using React.js, Node.js, and
@@ -54,7 +54,7 @@ export default function Blog() {
           <Card>
             <CardContent>
               <Link
-                className="group text-muted-foreground flex items-center justify-between gap-2 text-sm transition-all hover:text-red-400 md:text-base"
+                className="group flex items-center justify-between gap-2 text-sm transition-all hover:text-red-400 md:text-base"
                 href={"/"}
               >
                 Built a fullstack blogging platform using React.js, Node.js, and

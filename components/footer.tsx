@@ -4,7 +4,7 @@ import Link from "next/link";
 export default function Footer() {
   return (
     <div className="border-t">
-      <div className="text-muted-foreground mx-auto max-w-4xl p-4">
+      <div className="mx-auto max-w-4xl p-4">
         <footer className="flex items-center justify-between">
           <div>
             <p className="text-sm md:text-lg">Pandit Pawar &copy; 2025</p>

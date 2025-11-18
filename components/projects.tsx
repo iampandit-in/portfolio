@@ -126,7 +126,7 @@ export default function Projects() {
             <CarouselItem className="md:basis-1/2">
               <Card>
                 <CardHeader>
-                  <CardTitle className="hover:text-primary/90 text-lg transition-all">
+                  <CardTitle className="hover:text-primary/90 transi text-lg">
                     Backend API for Social Media.
                   </CardTitle>
                 </CardHeader>

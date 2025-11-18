@@ -10,8 +10,6 @@ import {
   Sheet,
   SheetClose,
   SheetContent,
-  SheetDescription,
-  SheetFooter,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
@@ -31,7 +29,7 @@ export default function Navbar() {
                 height={100}
                 className="h-9 w-9 rounded-full object-cover"
               />
-              <span className="font-medium md:text-xl">Pandit Pawar</span>
+              <p className="font-medium md:text-xl">Pandit Pawar</p>
             </PopoverTrigger>
             <PopoverContent className="flex min-w-md gap-4">
               <Image
@@ -60,7 +58,6 @@ export default function Navbar() {
               </div>
             </PopoverContent>
           </Popover>
-          <div></div>
         </Link>
         <nav className="hidden items-center gap-4 md:flex">
           <Link

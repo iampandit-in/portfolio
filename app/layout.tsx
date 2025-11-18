@@ -1,37 +1,8 @@
 import type { Metadata } from "next";
-import {
-  Geist,
-  Geist_Mono,
-  Chivo,
-  Chivo_Mono,
-  IBM_Plex_Mono,
-  JetBrains_Mono,
-} from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/navbar";
-
-const chivo = Chivo({
-  variable: "--font-chivo",
-  subsets: ["latin"],
-  weight: ["400", "700"],
-});
-
-const jetBrains = JetBrains_Mono({
-  variable: "--font-jetbrains-mono",
-  subsets: ["latin"],
-});
-
-const chivoMono = Chivo_Mono({
-  variable: "--font-chivo-mono",
-  subsets: ["latin"],
-  weight: ["400", "700"],
-});
-
-const ibmPlexMono = IBM_Plex_Mono({
-  variable: "--font-ibm-plex-mono",
-  subsets: ["latin"],
-  weight: ["400", "700"],
-});
+import { ThemeProvider } from "@/components/theme-provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -55,13 +26,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <meta name="apple-mobile-web-app-title" content="Pandit" />
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${jetBrains.variable} ${chivo.variable} ${chivoMono.variable} ${ibmPlexMono.variable} dark text-primary-foreground/80 font-mono antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} font-mono antialiased`}
       >
-        <Navbar />
-        {children}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="light"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Navbar />
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );
