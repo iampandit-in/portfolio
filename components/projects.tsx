@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import {
   Card,
@@ -15,6 +17,7 @@ import {
 } from "@/components/ui/carousel";
 import { ArrowUpRight } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import Autoplay from "embla-carousel-autoplay";
 
 export default function Projects() {
   return (
@@ -35,7 +38,18 @@ export default function Projects() {
             />
           </Link>
         </div>
-        <Carousel className="mt-4">
+        <Carousel
+          opts={{
+            align: "start",
+            loop: true,
+          }}
+          plugins={[
+            Autoplay({
+              delay: 3000,
+            }),
+          ]}
+          className="mt-4"
+        >
           <CarouselContent>
             <CarouselItem className="md:basis-1/2">
               <Card>
