@@ -45,7 +45,7 @@ export default function Projects() {
           }}
           plugins={[
             Autoplay({
-              delay: 3000,
+              delay: 2000,
             }),
           ]}
           className="mt-4"
