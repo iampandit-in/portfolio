@@ -1,0 +1,204 @@
+---
+title: "Building My Portfolio: A Deep Dive into Next.js, Tailwind CSS v4, and MDX"
+description: "how to build a cool minimal portfolio with nextjs"
+image: "https://images.unsplash.com/photo-1480796927426-f609979314bd?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGphcGFufGVufDB8fDB8fHww"
+date: "2025-11-19"
+slug: "me"
+author: "Pandit"
+---
+
+Building a personal portfolio is a rite of passage for every developer. It's not just about having a place to showcase your projects; it's about the journey of building something from scratch, making architectural decisions, and solving the inevitable problems that arise. In this post, I want to take you through my experience building this very site, sharing the technical details, the design philosophy, and the hurdles I overcame along the way.
+
+## Why Build a Portfolio?
+
+In today's competitive tech landscape, a resume often isn't enough. Employers and clients want to *see* what you can do. A portfolio serves as a living proof of your skills. But beyond the career benefits, building a portfolio is a fantastic learning opportunity. It forces you to wear multiple hats: product manager, designer, frontend developer, and DevOps engineer. You have to decide what features are essential (MVP), how it should look, how to implement it efficiently, and how to deploy it to the world.
+
+For me, the goal was simple: create a fast, accessible, and easy-to-maintain site where I could write about my experiences and showcase my work. I wanted it to be more than just a static HTML page; I wanted a platform that could grow with me.
+
+## The Tech Stack: Choosing the Right Tools
+
+Choosing a tech stack can be paralyzing. There are so many great options out there. For this project, I settled on a modern, powerful, and somewhat "bleeding edge" stack:
+
+*   **Framework:** [Next.js](https://nextjs.org/) (App Router)
+*   **Styling:** [Tailwind CSS v4](https://tailwindcss.com/)
+*   **Content:** [MDX](https://mdxjs.com/)
+*   **Hosting:** [Vercel](https://vercel.com/)
+*   **Icons:** [Lucide React](https://lucide.dev/)
+
+### Why Next.js?
+
+Next.js has become the de facto standard for React applications, and for good reason. The **App Router**, introduced in Next.js 13, represents a paradigm shift in how we build React apps. It leverages React Server Components (RSC) by default, which means less JavaScript sent to the client and faster initial page loads.
+
+For a content-heavy site like a portfolio/blog, Next.js offers excellent SEO capabilities out of the box. Features like static site generation (SSG) and incremental static regeneration (ISR) ensure that my pages are pre-rendered and blazing fast.
+
+### Why Tailwind CSS v4?
+
+I'm a huge fan of utility-first CSS. It speeds up development significantly once you get the hang of it. For this project, I decided to be adventurous and try out **Tailwind CSS v4**.
+
+Tailwind v4 is a ground-up rewrite that focuses on performance and simplicity. It uses a new engine (Oxide) that is significantly faster. It also simplifies the configuration. Instead of a massive `tailwind.config.js` file, much of the configuration can now be done directly in CSS using CSS variables. This feels much more native and aligns with where the web platform is heading.
+
+### Why MDX?
+
+I wanted to write my blog posts in Markdown because it's simple and portable. However, standard Markdown can be limiting if you want to include interactive elements. Enter **MDX**.
+
+MDX allows you to write JSX directly in your Markdown files. This means I can import React components—like charts, interactive demos, or custom alerts—and use them right in the middle of my content. It gives me the ease of writing Markdown with the power of React.
+
+## Design Philosophy: Minimal and Content-First
+
+I believe that a portfolio should get out of the way. The focus should be on the content—the projects and the writing. Therefore, I opted for a minimalist design.
+
+*   **Typography:** I used a clean sans-serif font for readability and a serif font for headings to add a touch of elegance.
+*   **Color Palette:** I used the `oklch` color space for my CSS variables. OKLCH is a perceptually uniform color space that makes it easier to create consistent color palettes and accessible contrast ratios. I implemented a dark mode that respects the user's system preference.
+*   **Whitespace:** Generous use of whitespace helps to reduce cognitive load and makes the content easier to digest.
+
+## Implementation Details
+
+Let's look at some of the code that powers this site.
+
+### Project Structure
+
+I'm using the standard Next.js App Router structure:
+
+```text
+app/
+├── blogs/
+│   ├── [slug]/
+│   │   └── page.mdx
+│   ├── layout.tsx
+│   └── page.tsx
+├── globals.css
+├── layout.tsx
+└── page.tsx
+mdx-components.tsx
+next.config.ts
+package.json
+```
+
+### Configuring Tailwind v4
+
+One of the coolest things about Tailwind v4 is how you configure it. Here is a snippet from my `app/globals.css`:
+
+```css
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --font-sans: "Inter", sans-serif;
+  --font-serif: "Merriweather", serif;
+  
+  --color-primary: oklch(0.6822 0.2063 24.4310);
+  --color-background: oklch(1 0 0);
+  --color-foreground: oklch(0.145 0 0);
+}
+
+/* Dark mode overrides */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-background: oklch(0.145 0 0);
+    --color-foreground: oklch(0.985 0 0);
+  }
+}
+```
+
+Notice the `@theme` block? That's where we define our design tokens now. No more context switching between CSS and JS config files.
+
+### Setting up MDX
+
+To get MDX working with Next.js, I used the `@next/mdx` package.
+
+First, I updated `next.config.ts`:
+
+```typescript
+import createMDX from '@next/mdx'
+ 
+const withMDX = createMDX({
+  // Add markdown plugins here, as desired
+})
+ 
+export default withMDX({
+  pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
+})
+```
+
+Then, I created `mdx-components.tsx` to define global components for my MDX files:
+
+```typescript
+import type { MDXComponents } from 'mdx/types'
+ 
+export function useMDXComponents(components: MDXComponents): MDXComponents {
+  return {
+    ...components,
+  }
+}
+```
+
+### The Blog Layout
+
+To make the blog posts look good, I used the `@tailwindcss/typography` plugin. This plugin provides a set of `prose` classes that automatically style vanilla HTML elements (like `h1`, `p`, `ul`, `code`) with beautiful typographic defaults.
+
+Here is my `app/blogs/layout.tsx`:
+
+```tsx
+export default function BlogLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <article className="prose prose-invert lg:prose-xl mx-auto mt-20 max-w-4xl p-4">
+      {children}
+    </article>
+  );
+}
+```
+
+The `prose` class applies the base styles, `prose-invert` adapts it for dark mode, and `lg:prose-xl` scales the typography up on larger screens.
+
+## The "Hiccup": Debugging Tailwind v4
+
+No project is without its challenges. Since I chose to use Tailwind v4, which is still quite new, I ran into a build error that stumped me for a bit.
+
+I was trying to add the typography plugin, and I added this to my `globals.css`:
+
+```css
+@import "tailwindcss";
+@plugins "tailwindcss/typography"; /* ERROR! */
+```
+
+When I ran `pnpm dev`, the build failed with a `CssSyntaxError`. The error message was a bit cryptic, complaining about exports.
+
+```
+CssSyntaxError: tailwindcss: .../app/globals.css:1:1: Package path ./typography is not exported from package ...
+```
+
+I spent some time digging through `node_modules` and checking the documentation. It turned out to be a two-fold issue:
+
+1.  **Syntax:** Tailwind v4 uses `@plugin` (singular), not `@plugins`.
+2.  **Package Name:** The package name is `@tailwindcss/typography`, but I was trying to import it as `tailwindcss/typography` (missing the `@`).
+
+The fix was simple once I realized my mistake:
+
+```diff
+- @plugins "tailwindcss/typography";
++ @plugin "@tailwindcss/typography";
+```
+
+This was a great reminder that when you're on the bleeding edge, you have to pay extra attention to the documentation and the specific versions of the tools you are using. Small typos can lead to confusing errors!
+
+## Future Plans
+
+This portfolio is just the beginning. I have a lot of features I want to add in the future:
+
+*   **Dynamic OG Images:** Generating social media preview images automatically for each blog post.
+*   **View Counter:** Tracking how many people read each post using a lightweight database like Redis or Postgres.
+*   **Comments:** Adding a way for readers to engage, perhaps using Giscus (GitHub Discussions).
+*   **RSS Feed:** Allowing users to subscribe to my blog.
+*   **More Interactive Components:** I want to build some interactive visualizations to explain complex coding concepts.
+
+## Conclusion
+
+Building this portfolio has been a rewarding experience. It gave me a chance to play with the latest tech, refine my design skills, and practice writing. If you haven't built a portfolio yet, I highly recommend it. It doesn't have to be perfect; it just has to be yours.
+
+Start small, pick a stack you enjoy, and just build. You'll learn more in the process than you ever could from a tutorial.
+
+Thanks for reading!
