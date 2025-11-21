@@ -16,8 +16,10 @@ export default async function Blog({
 
   return (
     <article className="prose prose-invert mx-auto mt-20 max-w-4xl p-4">
-      <h1>{blog?.frontmatter.title}</h1>
-      <div className="-mt-10 flex items-center gap-2">
+      <h1 className="text-xl font-bold md:text-2xl">
+        {blog?.frontmatter.title}
+      </h1>
+      <div className="-mt-8 flex items-center gap-2">
         <p className="text-muted-foreground">{blog?.frontmatter.author}</p>
         <p className="text-muted-foreground">•</p>
         <p className="text-muted-foreground">{blog?.frontmatter.date}</p>
