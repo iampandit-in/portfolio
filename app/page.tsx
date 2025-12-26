@@ -34,7 +34,8 @@ export default function Page() {
         <p className="text-sm sm:text-base">
           i'm a 20 y/o cs undergrad student. i love building things and solving
           problems. i enjoy programming, theoretical computer science and
-          learning new things. if i'm not coding, i'm probably watching movies.
+          learning new things. if i'm not coding, i'm probably watching movies
+          or series.
         </p>
       </div>
       {/* EXPERIENCE */}
