@@ -18,15 +18,15 @@ export default function Projects() {
         },
         {
           name: "PostgreSQL",
-          icon: "https://cdn.simpleicons.org/postgresql",
+          icon: "https://cdn.simpleicons.org/postgresql/#4169E1",
         },
         {
           name: "Redis",
           icon: "https://cdn.simpleicons.org/redis",
         },
         {
-          name: "WebSockets",
-          icon: "https://cdn.simpleicons.org/websockets",
+          name: "Socket",
+          icon: "https://cdn.simpleicons.org/socketdotio/ffffff",
         },
         {
           name: "Docker",
@@ -54,12 +54,8 @@ export default function Projects() {
           icon: "https://cdn.simpleicons.org/jwt",
         },
         {
-          name: "Microservices",
-          icon: "https://cdn.simpleicons.org/microservices",
-        },
-        {
           name: "Kafka",
-          icon: "https://cdn.simpleicons.org/kafka",
+          icon: "https://cdn.simpleicons.org/apachekafka",
         },
       ],
     },
@@ -98,9 +94,7 @@ export default function Projects() {
       <p className="sm:xl mb-2 text-lg">+ projects</p>
       <div>
         <div className="flex items-center gap-6">
-          <p className="cursor-pointer hover:text-red-400">
-            {Stack[0].project}
-          </p>
+          <p className="cursor-pointer text-red-400">{Stack[0].project}</p>
           <div className="flex items-center gap-2">
             <Link
               href="https://github.com/iampandit-in/voxforge-ai"
@@ -150,9 +144,7 @@ export default function Projects() {
       </div>
       <div className="project-2 mt-4">
         <div className="flex items-center gap-6">
-          <p className="cursor-pointer hover:text-red-400">
-            {Stack[1].project}
-          </p>
+          <p className="cursor-pointer text-red-400">{Stack[1].project}</p>
           <div className="flex items-center gap-2">
             <Link
               href="https://github.com/iampandit-in/voxforge-ai"
@@ -202,9 +194,7 @@ export default function Projects() {
       </div>
       <div className="project-3 mt-4">
         <div className="flex items-center gap-6">
-          <p className="cursor-pointer hover:text-red-400">
-            {Stack[2].project}
-          </p>
+          <p className="cursor-pointer text-red-400">{Stack[2].project}</p>
           <div className="flex items-center gap-2">
             <Link
               href="https://github.com/iampandit-in/skysentry-monitor"

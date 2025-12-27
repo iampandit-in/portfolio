@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Analytics } from "@vercel/analytics/next";
+import Header from "@/components/header";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -33,7 +34,7 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-title" content="Portfolio" />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.className} antialiased`}
+        className={`${geistSans.variable} ${geistMono.className} text-foreground/90 antialiased`}
       >
         <ThemeProvider
           attribute="class"
@@ -42,9 +43,8 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Analytics />
-          <main className="text-foreground/90 mx-auto mt-6 max-w-3xl p-4">
-            {children}
-          </main>
+          <Header />
+          <main className="mx-auto mt-16 max-w-3xl p-4">{children}</main>
         </ThemeProvider>
       </body>
     </html>
