@@ -1,4 +1,4 @@
-# Portfolio Website
+## My Portfolio
 
 A modern, responsive portfolio website built with Next.js, showcasing projects, blog posts, and professional experience. Features dynamic routing, MDX blog support, and a clean, minimalist design.
 
@@ -24,6 +24,7 @@ A modern, responsive portfolio website built with Next.js, showcasing projects, 
 - **shadcn/ui** - Component library
 - **Lucide React** - Icon library
 - **next-themes** - Theme management
+- **Icons/Logos** - simpleicons cdn
 
 ### Content
 - **MDX** - Markdown with JSX support
@@ -66,32 +67,24 @@ portfolio/
 ### Prerequisites
 
 - Node.js 18+ 
-- npm, yarn, pnpm, or bun
+- npm, pnpm, bun
 
 ### Installation
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/portfolio.git
+git clone https://github.com/iampandit-in/portfolio.git
 cd portfolio
 ```
 
 2. Install dependencies:
 ```bash
 npm install
-# or
-yarn install
-# or
-pnpm install
 ```
 
 3. Run the development server:
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
 ```
 
 4. Open [http://localhost:3000](http://localhost:3000) in your browser.
@@ -188,7 +181,7 @@ This project is private and proprietary.
 ## 👤 Author
 
 **Pandit Pawar**
-- Portfolio: [Your Portfolio URL]
+- Portfolio: [iampandit.in](https://iampandit.in)
 - GitHub: [@iampandit-in](https://github.com/iampandit-in)
 - Email: iampandit.in@gmail.com
 
@@ -201,4 +194,4 @@ This project is private and proprietary.
 
 ---
 
-Built with ❤️ using Next.js and TypeScript
+Built with ❤️ using Next.js and TypeScript by Pandit
