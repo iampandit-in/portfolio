@@ -39,7 +39,7 @@ export default function Skills() {
 
   return (
     <section className="mt-6">
-      <p className="text-lg sm:text-xl">Skills</p>
+      <p className="text-lg sm:text-xl">+ Tech stack</p>
       <div className="mt-4 grid grid-cols-4 gap-2 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-5">
         {Stack.map((s) => (
           <Button key={s.name} variant="outline" className="p-5">

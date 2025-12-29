@@ -1,7 +1,7 @@
+import { Avatar, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
 import { Github, Globe } from "lucide-react";
 import Link from "next/link";
-import { Button } from "./ui/button";
-import { Avatar, AvatarImage } from "./ui/avatar";
 
 export default function Projects() {
   const Stack = [
@@ -90,8 +90,8 @@ export default function Projects() {
     },
   ];
   return (
-    <section className="mt-10">
-      <p className="sm:xl mb-2 text-lg">+ Projects</p>
+    <section className="mt-4">
+      <p className="sm:xl mb-4 text-xl">All projects</p>
       <div>
         <div className="flex items-center gap-6">
           <p className="cursor-pointer text-red-400">{Stack[0].project}</p>

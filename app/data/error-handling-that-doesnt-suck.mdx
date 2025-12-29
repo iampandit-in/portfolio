@@ -1,0 +1,225 @@
+---
+title: "Error Handling That Doesn't Suck"
+author: "Pandit Pawar"
+description: "A practical approach to error handling in backend applications: validation, error types, logging, and user-friendly error messages. Learn from real mistakes and build robust error handling."
+date: 2025-01-29
+tags: ["backend-development", "error-handling", "validation", "nodejs", "best-practices"]
+---
+
+I used to think error handling was just about wrapping code in try-catch blocks. If something breaks, catch it and return an error. Simple, right?
+
+**Wrong.**
+
+I've learned that good error handling is one of the hardest parts of backend development. It's not just about catching errors—it's about **understanding them**, **logging them properly**, and **communicating them clearly** to both users and developers.
+
+Here's what I've learned so far.
+
+---
+
+## Validate Early, Validate Often
+
+My first mistake was validating data at the database level. I'd let invalid data get all the way to the database, then get a constraint error.
+
+This was backwards. Now I validate at the **API boundary**:
+
+- Check required fields
+- Validate data types
+- Enforce business rules
+- Sanitize inputs
+
+If the data is invalid, I return a `400 Bad Request` immediately. No database queries. No wasted resources.
+
+I use a validation library (like Joi or Zod) to define schemas:
+
+```javascript
+const userSchema = {
+  email: Joi.string().email().required(),
+  password: Joi.string().min(8).required(),
+  age: Joi.number().integer().min(18).max(120)
+};
+```
+
+This makes validation explicit and reusable.
+
+---
+
+## Create Custom Error Types
+
+I used to throw generic `Error` objects everywhere. Then I'd try to handle different errors differently, and I couldn't tell them apart.
+
+Now I create **custom error classes**:
+
+```javascript
+class ValidationError extends Error {
+  constructor(message, field) {
+    super(message);
+    this.name = 'ValidationError';
+    this.field = field;
+    this.statusCode = 400;
+  }
+}
+
+class NotFoundError extends Error {
+  constructor(resource) {
+    super(`${resource} not found`);
+    this.name = 'NotFoundError';
+    this.statusCode = 404;
+  }
+}
+
+class UnauthorizedError extends Error {
+  constructor(message = 'Unauthorized') {
+    super(message);
+    this.name = 'UnauthorizedError';
+    this.statusCode = 401;
+  }
+}
+```
+
+This lets me handle errors based on their type. Validation errors get different treatment than authentication errors.
+
+---
+
+## Centralized Error Handling
+
+I used to handle errors in every route handler. This led to inconsistent error responses and a lot of duplicate code.
+
+Now I use a **centralized error handler**:
+
+```javascript
+app.use((err, req, res, next) => {
+  // Log the error
+  console.error(err);
+
+  // Determine status code
+  const statusCode = err.statusCode || 500;
+
+  // Return appropriate response
+  res.status(statusCode).json({
+    error: {
+      code: err.name || 'INTERNAL_ERROR',
+      message: err.message || 'An error occurred',
+      ...(process.env.NODE_ENV === 'development' && { stack: err.stack })
+    }
+  });
+});
+```
+
+All errors go through this handler. It's consistent, and I can add logging, monitoring, or other cross-cutting concerns in one place.
+
+---
+
+## Don't Expose Internal Details
+
+I used to return full error stacks to users. Then I realized I was exposing file paths, internal logic, and other sensitive information.
+
+Now I:
+- **Log the full error** (with stack trace) on the server
+- **Return a generic message** to the client (unless it's a validation error)
+- **Include an error code** that developers can reference
+
+```javascript
+// Server logs this
+console.error('Database connection failed:', err);
+
+// Client receives this
+{
+  "error": {
+    "code": "DATABASE_ERROR",
+    "message": "Unable to process request. Please try again later."
+  }
+}
+```
+
+Users don't need to know my database connection string failed. They just need to know something went wrong.
+
+---
+
+## Logging: More Than console.log
+
+I used to use `console.log` for everything. Then I needed to find a specific error in production, and I couldn't.
+
+Now I use a proper logging library (like Winston or Pino) that:
+- **Logs to files** (not just console)
+- **Includes timestamps** and context
+- **Has log levels** (error, warn, info, debug)
+- **Can be searched** and filtered
+
+I log:
+- **Errors**: Full stack traces with context
+- **Warnings**: Things that might be problems
+- **Info**: Important events (user login, payment processed)
+- **Debug**: Detailed information for troubleshooting
+
+---
+
+## Handle Async Errors Properly
+
+I used to forget that async functions need special error handling. Then I'd have unhandled promise rejections.
+
+Now I:
+- **Wrap async route handlers** in try-catch
+- **Use async/await** consistently (easier to handle errors)
+- **Handle promise rejections** at the top level
+
+```javascript
+// Good
+app.post('/users', async (req, res, next) => {
+  try {
+    const user = await createUser(req.body);
+    res.status(201).json(user);
+  } catch (err) {
+    next(err); // Pass to error handler
+  }
+});
+```
+
+---
+
+## Validation Errors Should Be Detailed
+
+When validation fails, I return **specific field-level errors**:
+
+```json
+{
+  "error": {
+    "code": "VALIDATION_ERROR",
+    "message": "Validation failed",
+    "details": [
+      {
+        "field": "email",
+        "message": "Email is required"
+      },
+      {
+        "field": "password",
+        "message": "Password must be at least 8 characters"
+      }
+    ]
+  }
+}
+```
+
+This helps frontend developers show errors next to the right input fields.
+
+---
+
+## What I'm Still Learning
+
+I'm still figuring out:
+- How to handle partial failures in batch operations
+- The best way to retry transient errors
+- How to monitor and alert on errors in production
+- When to use circuit breakers and rate limiting
+
+But I'm handling errors thoughtfully now, not just hoping they don't happen.
+
+---
+
+## The Bottom Line
+
+Good error handling is about **being explicit** and **being helpful**. Validate early. Use custom error types. Centralize error handling. Log properly. Don't expose internals.
+
+Errors will happen. The question is: will you handle them gracefully, or will they break your application?
+
+Handle them gracefully.
+

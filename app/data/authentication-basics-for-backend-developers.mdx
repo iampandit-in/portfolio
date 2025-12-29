@@ -1,0 +1,218 @@
+---
+title: "Authentication Basics for Backend Developers"
+author: "Pandit Pawar"
+description: "Understanding authentication and authorization: passwords, JWT tokens, sessions, and security best practices. A practical guide to building secure authentication without overcomplicating it."
+date: 2025-02-05
+tags: ["backend-development", "authentication", "security", "jwt", "nodejs"]
+---
+
+When I first tried to build authentication, I thought it was just about checking if a username and password matched. Store the password, compare it on login, done.
+
+**Wrong.**
+
+I quickly learned that authentication is one of the most critical parts of a backend application. Get it wrong, and you're exposing user data. Get it right, and it's still complicated.
+
+Here's what I've learned so far.
+
+---
+
+## Never Store Plain Text Passwords
+
+This should be obvious, but I've seen it in tutorials: storing passwords as plain text in the database.
+
+**Never do this.**
+
+If your database is compromised, attackers have all your users' passwords. They can log in as anyone.
+
+Instead, use a **hashing algorithm** like bcrypt:
+
+```javascript
+const bcrypt = require('bcrypt');
+
+// When creating a user
+const hashedPassword = await bcrypt.hash(password, 10);
+
+// When logging in
+const isValid = await bcrypt.compare(password, hashedPassword);
+```
+
+Bcrypt automatically handles:
+- **Salting**: Adds random data to each password before hashing
+- **Cost factor**: Makes hashing slow (good for security, bad for performance—exactly what you want)
+
+---
+
+## Sessions vs. JWT: When to Use What
+
+I used to think JWT was always better than sessions. Then I learned they solve different problems.
+
+**Sessions** (stored on the server):
+- Server controls when they expire
+- Can be revoked immediately
+- Requires database/storage
+- Better for sensitive applications
+
+**JWT** (stateless tokens):
+- No server storage needed
+- Works well for microservices
+- Can't be revoked easily (until expiration)
+- Better for scalable, distributed systems
+
+For my current project, I'm using **JWT** because:
+- It's simpler to implement
+- I don't need immediate revocation
+- It works well with my stateless API design
+
+But I understand the trade-offs. If I needed to revoke access immediately (like for admin panels), I'd use sessions.
+
+---
+
+## JWT Structure: What's Actually in There
+
+A JWT has three parts:
+
+1. **Header**: Algorithm and token type
+2. **Payload**: Claims (user ID, expiration, etc.)
+3. **Signature**: Verifies the token hasn't been tampered with
+
+```javascript
+// Creating a JWT
+const token = jwt.sign(
+  { userId: user.id, email: user.email },
+  process.env.JWT_SECRET,
+  { expiresIn: '7d' }
+);
+
+// Verifying a JWT
+const decoded = jwt.verify(token, process.env.JWT_SECRET);
+```
+
+**Important**: Don't put sensitive data in the payload. JWTs are encoded, not encrypted. Anyone can decode them and read the payload.
+
+---
+
+## Token Expiration: Not Too Short, Not Too Long
+
+I used to set token expiration to 1 hour. Then users had to log in constantly, which was annoying.
+
+Then I set it to 30 days. Then I realized if a token was stolen, it was valid for a month.
+
+Now I use:
+- **Access tokens**: Short-lived (15 minutes to 1 hour)
+- **Refresh tokens**: Long-lived (7-30 days)
+
+When the access token expires, the client uses the refresh token to get a new one. This balances security and user experience.
+
+---
+
+## Store Tokens Securely
+
+I used to store JWTs in localStorage. Then I learned about XSS attacks.
+
+Now I:
+- **Store tokens in httpOnly cookies** (can't be accessed by JavaScript)
+- **Use HTTPS** (always, for everything)
+- **Set SameSite cookies** (prevents CSRF attacks)
+
+```javascript
+res.cookie('token', token, {
+  httpOnly: true,
+  secure: process.env.NODE_ENV === 'production',
+  sameSite: 'strict',
+  maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days
+});
+```
+
+---
+
+## Authorization: Who Can Do What
+
+Authentication answers: **Who are you?**  
+Authorization answers: **What can you do?**
+
+I used to mix these up. I'd check if a user was logged in, then assume they could do anything.
+
+Now I separate them:
+- **Authentication middleware**: Verifies the token and attaches user info to the request
+- **Authorization checks**: Verify the user has permission for the specific action
+
+```javascript
+// Authentication middleware
+const authenticate = async (req, res, next) => {
+  const token = req.cookies.token;
+  if (!token) return res.status(401).json({ error: 'Unauthorized' });
+  
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    req.user = decoded;
+    next();
+  } catch (err) {
+    return res.status(401).json({ error: 'Invalid token' });
+  }
+};
+
+// Authorization check
+const canEditPost = (req, res, next) => {
+  if (req.user.id !== req.post.userId && req.user.role !== 'admin') {
+    return res.status(403).json({ error: 'Forbidden' });
+  }
+  next();
+};
+```
+
+---
+
+## Rate Limiting: Prevent Brute Force Attacks
+
+I didn't think about rate limiting until I realized someone could try to brute force login attempts.
+
+Now I limit:
+- **Login attempts**: 5 per 15 minutes per IP
+- **Password reset requests**: 3 per hour per email
+- **API requests**: Varies by endpoint
+
+This prevents attackers from trying thousands of password combinations.
+
+---
+
+## Password Requirements: Balance Security and Usability
+
+I used to require:
+- At least 12 characters
+- Uppercase, lowercase, numbers, symbols
+- No dictionary words
+- Must change every 90 days
+
+This was secure but annoying. Users would write passwords on sticky notes.
+
+Now I use:
+- **Minimum 8 characters** (with strong hashing, this is reasonable)
+- **Common password check** (check against lists of breached passwords)
+- **No forced expiration** (unless there's a security incident)
+
+The goal is security without making users hate your application.
+
+---
+
+## What I'm Still Learning
+
+I'm still figuring out:
+- OAuth and social login (Google, GitHub, etc.)
+- Multi-factor authentication (MFA)
+- Passwordless authentication (magic links)
+- API key authentication for server-to-server
+
+But I understand the basics now: hash passwords, use tokens properly, separate authentication from authorization, rate limit, and think about security from the start.
+
+---
+
+## The Bottom Line
+
+Authentication is about **verifying identity** and **controlling access**. Hash passwords. Use tokens appropriately. Store them securely. Separate authentication from authorization. Rate limit. Think about security.
+
+It's complicated, but it's critical. Get it right, and your users' data stays safe. Get it wrong, and you're exposing everyone to risk.
+
+Start simple. Hash passwords. Use JWT or sessions. Add complexity as you need it.
+
+Security isn't optional.
+

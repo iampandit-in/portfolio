@@ -44,7 +44,7 @@ export default function Page() {
       </div>
       {/* EXPERIENCE */}
       <div className="mt-10">
-        <h3 className="mb-2 text-lg sm:text-xl">+ experience</h3>
+        <h3 className="mb-2 text-lg sm:text-xl">+ Experience</h3>
         <p className="text-red-400 sm:text-lg">diploma trainee engineer</p>
         <p className="text-muted-foreground cursor-pointer text-sm sm:text-base">
           Bajaj Auto Limited | Sep 2025 - Present

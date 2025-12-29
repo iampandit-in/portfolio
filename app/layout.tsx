@@ -34,7 +34,7 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-title" content="Portfolio" />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.className} text-foreground/90 antialiased`}
+        className={`${geistSans.variable} ${geistMono.className} ${inter.className} text-foreground/90 antialiased`}
       >
         <ThemeProvider
           attribute="class"

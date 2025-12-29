@@ -1,15 +1,32 @@
+"use client";
+
 import Link from "next/link";
 import { Button } from "./ui/button";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
+import { usePathname } from "next/navigation";
 
 export default function Header() {
+  const pathname = usePathname();
   return (
     <header className="fixed top-0 right-0 left-0 z-50 w-full border-b backdrop-blur-lg">
       <div className="mx-auto flex max-w-3xl items-center justify-between p-4">
         <span className="flex items-center gap-4">
-          <p>Home</p>
-          <p>Work</p>
-          <p>Blog</p>
+          <Link href={"/"} className={pathname === "/" ? "text-red-400" : ""}>
+            Home
+          </Link>
+
+          <Link
+            href={"/projects"}
+            className={pathname === "/projects" ? "text-red-400" : ""}
+          >
+            Projects
+          </Link>
+          <Link
+            href={"/blog"}
+            className={pathname === "/blog" ? "text-red-400" : ""}
+          >
+            Blog
+          </Link>
         </span>
         <nav>
           <span className="flex items-center gap-1">

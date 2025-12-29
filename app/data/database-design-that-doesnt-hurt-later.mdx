@@ -1,0 +1,189 @@
+---
+title: "Database Design That Doesn't Hurt Later"
+author: "Pandit Pawar"
+description: "Lessons learned from designing database schemas: normalization vs. denormalization, choosing the right data types, and building relationships that actually make sense. Real mistakes, real fixes."
+date: 2025-01-22
+tags: ["backend-development", "database-design", "sql", "data-modeling", "best-practices"]
+---
+
+I used to think database design was just about creating tables and adding columns. As long as it stored data, it was fine, right?
+
+**Wrong.**
+
+I've learned the hard way that bad database design comes back to haunt you. It's not just about storing data—it's about storing it in a way that makes sense, performs well, and doesn't break when you need to change things.
+
+Here's what I wish I knew earlier.
+
+---
+
+## Start with Relationships, Not Tables
+
+When I first designed a database, I started by listing all the tables I thought I needed: `users`, `posts`, `comments`, `likes`.
+
+Then I tried to connect them. This was backwards.
+
+Now I start by understanding **relationships**:
+
+- A user **has many** posts
+- A post **has many** comments
+- A user **has many** likes
+- A post **has many** likes
+
+Once I understand the relationships, the tables and foreign keys become obvious.
+
+---
+
+## Normalization: Not Too Much, Not Too Little
+
+I used to over-normalize everything. Every piece of data got its own table. Then I'd need 5 JOINs just to get a user's basic info.
+
+Then I swung the other way. I put everything in one table. Then I had duplicate data everywhere, and updating one thing meant updating 20 rows.
+
+**Third Normal Form (3NF)** is usually a good balance:
+
+- Each table has a single purpose
+- No duplicate data
+- All non-key attributes depend on the primary key
+- No transitive dependencies
+
+But sometimes, a little denormalization is worth it for performance. I'll duplicate a `username` in a `posts` table if it means avoiding a JOIN on every query.
+
+---
+
+## Choose Your Data Types Carefully
+
+I used to use `VARCHAR(255)` for everything. Name? `VARCHAR(255)`. Email? `VARCHAR(255)`. Phone number? `VARCHAR(255)`.
+
+This works, but it's wasteful and can cause problems.
+
+Now I think about:
+- **How long will this actually be?** A username might be 20 characters max. An email might be 50. Use appropriate lengths.
+- **Will I need to do math on this?** If yes, use `INTEGER` or `DECIMAL`, not `VARCHAR`.
+- **Do I need to store dates/times?** Use `DATE`, `TIME`, or `TIMESTAMP`, not strings.
+- **Is this always the same format?** Phone numbers, emails, URLs have formats. Validate them, but store them appropriately.
+
+---
+
+## Indexes: Your Best Friend and Worst Enemy
+
+I didn't understand indexes at first. My queries were slow, and I didn't know why.
+
+Then I learned: indexes make reads fast but writes slower.
+
+I index:
+- **Primary keys** (automatic in most databases)
+- **Foreign keys** (for JOIN performance)
+- **Columns used in WHERE clauses** frequently
+- **Columns used for sorting** (ORDER BY)
+
+But I'm careful not to over-index. Every index adds overhead to INSERT and UPDATE operations.
+
+---
+
+## Foreign Keys: Use Them
+
+I used to skip foreign keys. "I'll just remember to delete related records manually," I thought.
+
+This always ended badly. Orphaned records. Inconsistent data. Bugs that were hard to track down.
+
+Now I use foreign keys with **CASCADE** options:
+
+```sql
+CREATE TABLE posts (
+  id SERIAL PRIMARY KEY,
+  user_id INTEGER REFERENCES users(id) ON DELETE CASCADE
+);
+```
+
+When a user is deleted, their posts are automatically deleted too. The database enforces data integrity, not my memory.
+
+---
+
+## NULL: Use It Sparingly
+
+I used to make everything `NOT NULL` by default. Then I'd realize I needed optional fields and have to alter the table.
+
+Now I think: **Is this field truly required?** If it's optional, allow NULL. If it's required, make it `NOT NULL`.
+
+But I'm also careful. Too many NULLs can make queries complicated. Sometimes it's better to have a default value (like an empty string or 0) than NULL.
+
+---
+
+## Timestamps: Always Include Them
+
+Every table should have:
+- `created_at TIMESTAMP`
+- `updated_at TIMESTAMP`
+
+I didn't do this at first. Then I needed to know when something was created or last modified, and I was stuck.
+
+Most databases can auto-update these. In PostgreSQL:
+
+```sql
+created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+```
+
+---
+
+## Soft Deletes: Sometimes Worth It
+
+I used to hard-delete everything. User deletes their account? `DELETE FROM users WHERE id = ?`.
+
+Then I needed to restore something, and I couldn't.
+
+Now I use **soft deletes** for important data:
+
+```sql
+ALTER TABLE users ADD COLUMN deleted_at TIMESTAMP;
+```
+
+Instead of deleting, I set `deleted_at = NOW()`. Then I filter it out in queries:
+
+```sql
+SELECT * FROM users WHERE deleted_at IS NULL;
+```
+
+This lets me recover data if needed and maintain referential integrity.
+
+---
+
+## Migrations: Version Control for Your Database
+
+I used to make changes directly in the database. Then I'd forget what I changed, and production would be different from development.
+
+Now I use **migrations**. Every change is a file:
+
+```
+001_create_users_table.sql
+002_add_email_to_users.sql
+003_create_posts_table.sql
+```
+
+This makes changes:
+- **Trackable**: I can see the history
+- **Reversible**: I can roll back if needed
+- **Repeatable**: I can apply the same changes to any environment
+
+---
+
+## What I'm Still Learning
+
+I'm still figuring out:
+- When to use JSON columns vs. separate tables
+- How to handle many-to-many relationships efficiently
+- When to denormalize for performance
+- How to design for scale from the start
+
+But I'm thinking about these problems now, not just creating tables and hoping for the best.
+
+---
+
+## The Bottom Line
+
+Good database design is about **thinking ahead**. What relationships exist? What queries will I need to run? What might change?
+
+Start with relationships. Normalize appropriately. Use the right data types. Add indexes thoughtfully. Use foreign keys.
+
+Your future self will thank you.
+

@@ -11,11 +11,11 @@ export default async function AllBlogs() {
   const AllBlogs = await getBlogs();
   return (
     <div>
-      <h2 className="mt-6 mb-2 text-xl">+ Blogs</h2>
-      <div className="space-y-2">
+      <h2 className="mt-4 mb-8 text-2xl">All Blogs</h2>
+      <div className="space-y-4">
         {AllBlogs.map((blog, idx) => (
           <Link
-            className="flex items-center justify-between transition-colors hover:border-red-400/50"
+            className="flex items-center justify-between border-b py-2 transition-colors hover:border-red-400/50"
             key={idx}
             href={`/blog/${blog.slug}`}
           >

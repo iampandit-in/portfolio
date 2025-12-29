@@ -1,0 +1,160 @@
+---
+title: "Designing RESTful APIs That Actually Make Sense"
+author: "Pandit Pawar"
+description: "A practical guide to designing RESTful APIs with clear naming conventions, proper HTTP methods, and thoughtful resource modeling. Learn from real mistakes and build APIs that developers actually want to use."
+date: 2025-01-15
+tags: ["backend-development", "api-design", "rest", "nodejs", "best-practices"]
+---
+
+When I first started building APIs, I thought REST was just about using HTTP methods. GET for reading, POST for creating—simple, right?
+
+**Wrong.**
+
+I quickly learned that designing good APIs is harder than it looks. It's not just about making requests work. It's about making them **intuitive**, **consistent**, and **maintainable**.
+
+Here's what I've learned so far.
+
+---
+
+## Start with Resources, Not Actions
+
+My first mistake was thinking in terms of actions:
+
+```
+POST /createUser
+GET /getUserById
+PUT /updateUser
+DELETE /removeUser
+```
+
+This feels natural at first, but it breaks REST principles and makes your API harder to understand.
+
+Instead, think in terms of **resources**:
+
+```
+POST /users
+GET /users/:id
+PUT /users/:id
+DELETE /users/:id
+```
+
+The resource (`/users`) stays constant. The HTTP method tells you what to do with it.
+
+---
+
+## HTTP Methods Actually Mean Something
+
+I used to use POST for everything. Need to update something? POST. Need to delete? POST with a flag. It worked, but it was wrong.
+
+Here's what each method should actually do:
+
+- **GET**: Retrieve data (idempotent, no side effects)
+- **POST**: Create new resources (not idempotent)
+- **PUT**: Replace a resource entirely (idempotent)
+- **PATCH**: Partially update a resource (idempotent)
+- **DELETE**: Remove a resource (idempotent)
+
+The key difference? **Idempotency**. If you call a GET, PUT, PATCH, or DELETE multiple times, the result should be the same. POST is different—calling it twice might create two resources.
+
+---
+
+## Naming Conventions Matter
+
+I spent way too much time debating whether to use `/api/users` or `/api/v1/users` or just `/users`.
+
+Here's what I settled on:
+
+- Use **plural nouns** for collections: `/users`, `/posts`, `/comments`
+- Use **nested resources** for relationships: `/users/:id/posts`
+- Keep it **consistent** across your entire API
+- Use **kebab-case** or **camelCase**—just pick one and stick with it
+
+My current project uses `/api/v1/users` because:
+1. The `/api` prefix makes it clear these are API endpoints
+2. The `/v1` gives me room to version later
+3. It's explicit and predictable
+
+---
+
+## Status Codes Are Your Friend
+
+I used to return `200 OK` for everything. User not found? `200 OK` with an error message. Validation failed? `200 OK` with an error message.
+
+This works, but it's lazy. HTTP status codes exist for a reason:
+
+- **200 OK**: Success
+- **201 Created**: Resource created successfully
+- **400 Bad Request**: Client error (validation, malformed request)
+- **401 Unauthorized**: Authentication required
+- **403 Forbidden**: Authenticated but not authorized
+- **404 Not Found**: Resource doesn't exist
+- **500 Internal Server Error**: Server error
+
+Using the right status code makes your API self-documenting. A `404` immediately tells you the resource doesn't exist. A `401` tells you to authenticate first.
+
+---
+
+## Error Responses Should Be Consistent
+
+When something goes wrong, your error response should follow a consistent structure:
+
+```json
+{
+  "error": {
+    "code": "VALIDATION_ERROR",
+    "message": "Email is required",
+    "details": {
+      "field": "email",
+      "reason": "required"
+    }
+  }
+}
+```
+
+This makes it easier for frontend developers to handle errors consistently. They can check `error.code` and respond accordingly.
+
+---
+
+## Versioning: Do It Early
+
+I didn't think about versioning until I needed to change an endpoint. Then I was stuck.
+
+Now I version from the start: `/api/v1/users`.
+
+When I need to make breaking changes, I can create `/api/v2/users` and deprecate v1 gradually. This gives clients time to migrate.
+
+---
+
+## Pagination, Filtering, and Sorting
+
+When you have a list endpoint like `GET /users`, you'll eventually need:
+
+- **Pagination**: `?page=1&limit=20`
+- **Filtering**: `?status=active&role=admin`
+- **Sorting**: `?sort=created_at&order=desc`
+
+I use query parameters for all of these. It keeps the URL clean and makes the API flexible.
+
+---
+
+## What I'm Still Learning
+
+I'm not an expert. I'm still figuring out:
+
+- When to use nested resources vs. separate endpoints
+- How to handle complex relationships efficiently
+- The best way to document APIs (OpenAPI? Postman? Both?)
+- How to handle real-time updates (WebSockets? Server-Sent Events?)
+
+But I'm building real APIs now, not just copying tutorials. And that's progress.
+
+---
+
+## The Bottom Line
+
+Good API design is about **predictability** and **consistency**. If a developer can guess your endpoint structure, you're doing something right.
+
+Start simple. Use proper HTTP methods. Return meaningful status codes. Be consistent.
+
+The rest comes with practice.
+
