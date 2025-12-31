@@ -34,6 +34,7 @@ export default function Header() {
               <Link
                 className="group hover:text-primary flex items-center gap-2 transition-all duration-300"
                 href="https://x.com/iampandit_in"
+                target="_blank"
               >
                 <Avatar className="h-4 w-4">
                   <AvatarImage src={"https://cdn.simpleicons.org/x/f5f5f5"} />
@@ -44,6 +45,7 @@ export default function Header() {
               <Link
                 className="group hover:text-primary flex items-center gap-2 transition-all duration-300"
                 href="https://github.com/iampandit-in"
+                target="_blank"
               >
                 <Avatar className="h-4 w-4">
                   <AvatarImage
@@ -55,7 +57,8 @@ export default function Header() {
             <Button size={"icon-xs"} variant={"outline"} asChild>
               <Link
                 className="group hover:text-primary flex items-center gap-2 transition-all duration-300"
-                href="mailto:iampandit.in@gmail.com"
+                href="https://www.youtube.com/@iampandit-in"
+                target="_blank"
               >
                 <Avatar className="h-4 w-4">
                   <AvatarImage src={"https://cdn.simpleicons.org/youtube"} />

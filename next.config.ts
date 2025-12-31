@@ -2,8 +2,6 @@ import type { NextConfig } from "next";
 import createMDX from '@next/mdx'
 
 const nextConfig: NextConfig = {
-  
-
   images: {
     remotePatterns: [
       {
@@ -18,8 +16,8 @@ const nextConfig: NextConfig = {
 };
 
 const withMDX = createMDX({
-   extension: /\.(md|mdx)$/,
-  // Add markdown plugins here, as desired
+  // Options can be added here if needed, but plugins should be configured
+  // in next-mdx-remote where the MDX is actually compiled
 })
 
 export default withMDX(nextConfig);

@@ -2,6 +2,7 @@ import { compileMDX } from "next-mdx-remote/rsc";
 import { getSingleBlog, getBlogs } from "@/utils/mdx";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
+import rehypeHighlight from "rehype-highlight";
 
 type FrontMatter = {
   title: string;
@@ -29,7 +30,12 @@ export async function generateMetadata({
     const blog = await getSingleBlog(slug);
     const { frontmatter } = await compileMDX<FrontMatter>({
       source: blog,
-      options: { parseFrontmatter: true },
+      options: {
+        parseFrontmatter: true,
+        mdxOptions: {
+          rehypePlugins: [rehypeHighlight],
+        },
+      },
     });
 
     return {
@@ -68,7 +74,12 @@ export default async function page({
     const blog = await getSingleBlog(slug);
     const { content, frontmatter } = await compileMDX<FrontMatter>({
       source: blog,
-      options: { parseFrontmatter: true },
+      options: {
+        parseFrontmatter: true,
+        mdxOptions: {
+          rehypePlugins: [rehypeHighlight],
+        },
+      },
     });
 
     return (
