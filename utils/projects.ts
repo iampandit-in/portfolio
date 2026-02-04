@@ -14,49 +14,83 @@ type Project = {
 
 export const projects: Project[] = [
   {
-    slug: "voxforge",
-    project: "VoxForge AI",
+    slug: "momentum",
+    project: "Momentum",
     description: [
-      "Designed a real-time collaborative document editor with AI-assisted writing and version insights using Next.js and WebSockets.",
-      "Implemented FastAPI microservices for authentication, semantic search, and autosave pipelines with Redis-based caching improving response latency by 64%.",
+      "Built a production-grade project management platform with multi-user project and task workflows.",
+      "Designed REST APIs for authentication, projects, tasks, and role-based access control.",
+      "Implemented secure JWT-based authentication with protected routes and authorization middleware.",
+      "Structured the backend using MVC architecture with centralized error handling and validation.",
+    ],
+    stack: [
+      {
+        name: "MongoDB",
+        icon: "https://cdn.simpleicons.org/mongodb",
+      },
+      {
+        name: "Express.js",
+        icon: "https://cdn.simpleicons.org/express",
+      },
+      {
+        name: "React",
+        icon: "https://cdn.simpleicons.org/react",
+      },
+      {
+        name: "Node.js",
+        icon: "https://cdn.simpleicons.org/nodedotjs",
+      },
+      {
+        name: "JWT",
+        icon: "https://cdn.simpleicons.org/jwt",
+      },
+    ],
+  },
+  {
+    slug: "shadospace",
+    project: "Shadospace",
+    description: [
+      "Developed a full-stack blogging platform supporting content creation, editing, and publishing.",
+      "Architected scalable REST APIs for users, posts, comments, and engagement workflows.",
+      "Implemented authentication and authorization using JWT and middleware-based access control.",
+      "Designed MongoDB schemas for posts, users, tags, and relational references.",
+    ],
+    stack: [
+      {
+        name: "MongoDB",
+        icon: "https://cdn.simpleicons.org/mongodb",
+      },
+      {
+        name: "Express.js",
+        icon: "https://cdn.simpleicons.org/express",
+      },
+      {
+        name: "React",
+        icon: "https://cdn.simpleicons.org/react",
+      },
+      {
+        name: "Node.js",
+        icon: "https://cdn.simpleicons.org/nodedotjs",
+      },
+      {
+        name: "JWT",
+        icon: "https://cdn.simpleicons.org/jwt",
+      },
+    ],
+  },
+  {
+    slug: "ladder",
+    project: "Ladder",
+    description: [
+      "Built a job board platform enabling employers to post jobs and candidates to apply online.",
+      "Developed a standalone backend REST API handling job listings, applications, and user roles.",
+      "Implemented role-based access control for employers, candidates, and admins using JWT.",
+      "Integrated a Next.js SSR frontend for SEO-friendly job pages and improved performance.",
     ],
     stack: [
       {
         name: "Next.js",
         icon: "https://cdn.simpleicons.org/nextdotjs/ffffff",
       },
-      {
-        name: "FastAPI",
-        icon: "https://cdn.simpleicons.org/fastapi",
-      },
-      {
-        name: "PostgreSQL",
-        icon: "https://cdn.simpleicons.org/postgresql/#4169E1",
-      },
-      {
-        name: "Redis",
-        icon: "https://cdn.simpleicons.org/redis",
-      },
-      {
-        name: "Socket",
-        icon: "https://cdn.simpleicons.org/socketdotio/ffffff",
-      },
-      {
-        name: "Docker",
-        icon: "https://cdn.simpleicons.org/docker",
-      },
-    ],
-    github: "https://github.com/iampandit-in/voxforge-ai",
-    website: "https://voxforge.ai",
-  },
-  {
-    slug: "nebulapay",
-    project: "NebulaPay",
-    description: [
-      "Built a production-grade payments and subscription platform supporting role-based access, multi-tenant architecture, and webhook billing events.",
-      "Implemented distributed event-driven architecture using Kafka to process asynchronous transactions and fraud detection alerts.",
-    ],
-    stack: [
       {
         name: "Node.js",
         icon: "https://cdn.simpleicons.org/nodedotjs",
@@ -73,49 +107,39 @@ export const projects: Project[] = [
         name: "JWT",
         icon: "https://cdn.simpleicons.org/jwt",
       },
-      {
-        name: "Kafka",
-        icon: "https://cdn.simpleicons.org/apachekafka",
-      },
     ],
-    github: "https://github.com/iampandit-in/nebulapay",
-    website: "https://nebulapay.com",
   },
   {
-    slug: "skysentry",
-    project: "SkySentry Monitor",
+    slug: "instachat",
+    project: "InstaChat",
     description: [
-      "Engineered an IoT network observability dashboard capable of monitoring 10K+ distributed devices with live metrics and predictive alerts.",
-      "Developed a GoLang + gRPC backend to achieve low-latency bidirectional communication pipelines between sensors and cloud cluster.",
+      "Designed a real-time messaging backend supporting one-to-one and group conversations.",
+      "Implemented WebSocket-based message delivery using Socket.IO with JWT-secured connections.",
+      "Built REST APIs for user authentication, conversations, and message history retrieval.",
+      "Designed MongoDB schemas for users, conversations, messages, and delivery status.",
     ],
     stack: [
       {
-        name: "React",
-        icon: "https://cdn.simpleicons.org/react",
+        name: "Node.js",
+        icon: "https://cdn.simpleicons.org/nodedotjs",
       },
       {
-        name: "Golang",
-        icon: "https://cdn.simpleicons.org/golang",
+        name: "Express.js",
+        icon: "https://cdn.simpleicons.org/express",
       },
       {
-        name: "gRPC",
-        icon: "https://cdn.simpleicons.org/grpc",
+        name: "MongoDB",
+        icon: "https://cdn.simpleicons.org/mongodb",
       },
       {
-        name: "Prometheus",
-        icon: "https://cdn.simpleicons.org/prometheus",
+        name: "Socket.IO",
+        icon: "https://cdn.simpleicons.org/socketdotio/ffffff",
       },
       {
-        name: "TimescaleDB",
-        icon: "https://cdn.simpleicons.org/timescaledb",
-      },
-      {
-        name: "Kubernetes",
-        icon: "https://cdn.simpleicons.org/kubernetes",
+        name: "JWT",
+        icon: "https://cdn.simpleicons.org/jwt",
       },
     ],
-    github: "https://github.com/iampandit-in/skysentry-monitor",
-    website: "https://skysentry.ai",
   },
 ];
 
@@ -126,4 +150,3 @@ export const getProjectBySlug = (slug: string): Project | undefined => {
 export const getAllProjects = (): Project[] => {
   return projects;
 };
-
