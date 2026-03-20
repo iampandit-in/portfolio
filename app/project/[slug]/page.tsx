@@ -1,10 +1,15 @@
-import { Avatar, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
-import { Globe } from "lucide-react";
-import Link from "next/link";
 import { getProjectBySlug, getAllProjects } from "@/utils/projects";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
+import Link from "next/link";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 
 export async function generateStaticParams() {
   const projects = getAllProjects();
@@ -31,16 +36,6 @@ export async function generateMetadata({
   return {
     title: project.project,
     description: project.description.join(" "),
-    openGraph: {
-      title: project.project,
-      description: project.description.join(" "),
-      type: "website",
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: project.project,
-      description: project.description.join(" "),
-    },
   };
 }
 
@@ -57,66 +52,58 @@ export default async function ProjectPage({
   }
 
   return (
-    <div className="space-y-6">
-      <section className="section-shell">
-        <h1 className="text-2xl font-semibold sm:text-3xl">{project.project}</h1>
-        <div className="mt-4 flex items-center gap-3">
-          {project.github && (
-            <Button variant="outline" size="sm" asChild>
+    <div className="space-y-4">
+      <Card>
+        <CardHeader>
+          <CardTitle>{project.project}</CardTitle>
+          <CardDescription className="flex items-center gap-3">
+            {project.github && (
               <Link
                 href={project.github}
                 target="_blank"
-                className="group hover:text-primary flex items-center gap-2 text-sm transition-all duration-300"
+                rel="noopener noreferrer"
               >
-                <Avatar className="h-5 w-5">
-                  <AvatarImage
-                    src={"https://cdn.simpleicons.org/github/f5f5f5"}
-                  />
-                </Avatar>
-                <span>GitHub</span>
+                GitHub
               </Link>
-            </Button>
-          )}
-          {project.website && (
-            <Button variant="outline" size="sm" asChild>
+            )}
+            {project.website && (
               <Link
                 href={project.website}
                 target="_blank"
-                className="group hover:text-primary flex items-center gap-2 text-sm transition-all duration-300"
+                rel="noopener noreferrer"
               >
-                <Globe size={18} color="#8A8AFF" />
-                <span>Website</span>
+                Live site
               </Link>
-            </Button>
-          )}
-        </div>
-      </section>
+            )}
+          </CardDescription>
+        </CardHeader>
+      </Card>
 
-      <section className="section-shell">
-        <h2 className="mb-3 text-xl font-semibold">About</h2>
-        <ul className="list-inside list-disc space-y-2 text-sm sm:text-base">
-          {project.description.map((desc, idx) => (
-            <li key={idx}>{desc}</li>
-          ))}
-        </ul>
-      </section>
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-base">Overview</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <ul className="list-inside list-disc space-y-1 text-sm">
+            {project.description.map((desc, i) => (
+              <li key={i}>{desc}</li>
+            ))}
+          </ul>
+        </CardContent>
+      </Card>
 
-      <section className="section-shell">
-        <h2 className="mb-3 text-xl font-semibold">Tech Stack</h2>
-        <div className="flex flex-wrap items-center gap-2">
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-base">Tech Stack</CardTitle>
+        </CardHeader>
+        <CardContent className="flex flex-wrap gap-2">
           {project.stack.map((tech) => (
-            <span
-              key={tech.name}
-              className="chip inline-flex items-center gap-2 text-xs sm:text-sm"
-            >
-              <Avatar className="h-3 w-3 sm:h-4 sm:w-4">
-                <AvatarImage src={tech.icon} alt={tech.name} />
-              </Avatar>
+            <Badge key={tech.name} variant="secondary">
               {tech.name}
-            </span>
+            </Badge>
           ))}
-        </div>
-      </section>
+        </CardContent>
+      </Card>
     </div>
   );
 }

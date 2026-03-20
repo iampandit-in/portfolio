@@ -1,7 +1,6 @@
 import { getBlogs } from "@/utils/mdx";
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
-import { Button } from "./ui/button";
+import { Card, CardContent } from "@/components/ui/card";
 
 export default async function Blog() {
   const blogs = await getBlogs();
@@ -14,34 +13,32 @@ export default async function Blog() {
   }
 
   return (
-    <section className="section-shell">
-      <div className="mb-4 flex items-center justify-between">
-        <h2 className="section-title mb-0">Latest Writing</h2>
-        <Button size="sm" variant="ghost" asChild>
-          <Link href="/blog">
-            All Posts
-            <ArrowUpRight size={14} />
-          </Link>
-        </Button>
+    <section className="space-y-3">
+      <div className="flex items-center justify-between">
+        <h2 className="text-lg font-semibold">Blog</h2>
+        <Link href="/blog" className="text-sm">
+          View all
+        </Link>
       </div>
-      <div className="grid gap-2">
-        {latest.map((blog) => (
-          <Link
-            className="bg-background/70 hover:border-primary/35 flex items-center justify-between rounded-xl border px-4 py-3 transition-colors"
-            key={blog.slug}
-            href={`/blog/${blog.slug}`}
-          >
-            <p className="font-medium">{blog.title}</p>
-            <p className="text-muted-foreground text-xs sm:text-sm">
-              {new Date(blog.date).toLocaleDateString("en-US", {
-                year: "numeric",
-                month: "short",
-                day: "numeric",
-              })}
-            </p>
-          </Link>
-        ))}
-      </div>
+      <Card>
+        <CardContent className="space-y-3">
+          {latest.map((blog) => (
+            <div
+              key={blog.slug}
+              className="flex items-center justify-between text-sm"
+            >
+              <Link href={`/blog/${blog.slug}`}>{blog.title}</Link>
+              <span className="text-muted-foreground">
+                {new Date(blog.date).toLocaleDateString("en-US", {
+                  year: "numeric",
+                  month: "short",
+                  day: "numeric",
+                })}
+              </span>
+            </div>
+          ))}
+        </CardContent>
+      </Card>
     </section>
   );
 }

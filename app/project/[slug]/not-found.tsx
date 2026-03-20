@@ -1,18 +1,18 @@
 import Link from "next/link";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export default function NotFound() {
   return (
-    <div className="section-shell flex flex-col items-center justify-center py-16">
-      <h2 className="mb-4 text-2xl font-semibold">Project Not Found</h2>
-      <p className="text-muted-foreground mb-8 text-center">
-        The project you are looking for does not exist.
-      </p>
-      <Link
-        href="/projects"
-        className="text-primary hover:text-primary/80 transition-colors"
-      >
-        Back to projects
-      </Link>
-    </div>
+    <Card>
+      <CardHeader>
+        <CardTitle>Project Not Found</CardTitle>
+      </CardHeader>
+      <CardContent className="text-sm">
+        <p className="text-muted-foreground mb-3">
+          The project you are looking for does not exist.
+        </p>
+        <Link href="/projects">Back to projects</Link>
+      </CardContent>
+    </Card>
   );
 }

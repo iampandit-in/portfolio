@@ -120,35 +120,9 @@
 
 @layer base {
   * {
-    @apply scroll-smooth border-border outline-ring/50;
+    @apply border-border outline-ring/50;
   }
   body {
-    @apply relative min-h-screen bg-background text-foreground;
-    background-image:
-      radial-gradient(circle at 20% 0%, color-mix(in oklch, var(--primary) 18%, transparent), transparent 35%),
-      radial-gradient(circle at 80% 100%, color-mix(in oklch, var(--accent) 25%, transparent), transparent 40%);
-  }
-  h1,
-  h2,
-  h3,
-  h4 {
-    @apply tracking-tight;
-  }
-  html {
-    @apply font-sans;
-  }
-}
-
-@layer utilities {
-  .section-shell {
-    @apply border-border/70 bg-card/80 rounded-2xl border p-6 backdrop-blur-sm;
-  }
-
-  .section-title {
-    @apply mb-4 text-lg font-semibold sm:text-xl;
-  }
-
-  .chip {
-    @apply text-muted-foreground bg-muted/70 rounded-full border px-2.5 py-1 text-xs;
+    @apply min-h-screen bg-background text-foreground;
   }
 }

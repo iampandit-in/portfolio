@@ -1,15 +1,17 @@
 import Projects from "@/components/projects";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export default function ProjectsPage() {
   return (
     <div className="space-y-6">
-      <section className="section-shell">
-        <h1 className="text-2xl font-semibold sm:text-3xl">Projects</h1>
-        <p className="text-muted-foreground mt-2 text-sm sm:text-base">
-          A focused set of systems and product builds across backend, realtime,
-          and platform engineering.
-        </p>
-      </section>
+      <Card>
+        <CardHeader>
+          <CardTitle>Projects</CardTitle>
+        </CardHeader>
+        <CardContent className="text-muted-foreground text-sm">
+          Selected work and product builds.
+        </CardContent>
+      </Card>
       <Projects />
     </div>
   );

@@ -23,27 +23,27 @@ export const projects: Project[] = [
     stack: [
       {
         name: "Next.js",
-        icon: "https://cdn.simpleicons.org/nextdotjs/ffffff",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg",
       },
       {
         name: "Better Auth",
-        icon: "https://cdn.simpleicons.org/betterauth",
+        icon: "https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/betterauth.svg",
       },
       {
         name: "Node.js",
-        icon: "https://cdn.simpleicons.org/nodedotjs",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
       },
       {
         name: "PostgreSQL",
-        icon: "https://cdn.simpleicons.org/postgresql",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg",
       },
       {
         name: "Drizzle ORM",
-        icon: "https://cdn.simpleicons.org/drizzle",
+        icon: "https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/drizzle.svg",
       },
       {
         name: "Shadcn UI",
-        icon: "https://cdn.simpleicons.org/shadcnui/ffffff",
+        icon: "https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/shadcnui.svg",
       },
     ],
     website: "https://shadospace.in",
@@ -58,58 +58,57 @@ export const projects: Project[] = [
     stack: [
       {
         name: "Next.js",
-        icon: "https://cdn.simpleicons.org/nextdotjs/ffffff",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg",
       },
       {
         name: "PostgreSQL",
-        icon: "https://cdn.simpleicons.org/postgresql",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg",
       },
       {
         name: "Drizzle ORM",
-        icon: "https://cdn.simpleicons.org/drizzle",
+        icon: "https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/drizzle.svg",
       },
       {
         name: "Better Auth",
-        icon: "https://cdn.simpleicons.org/betterauth",
+        icon: "https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/betterauth.svg",
       },
       {
-        name: "Shadcn ui",
-        icon: "https://cdn.simpleicons.org/shadcnui",
+        name: "Shadcn UI",
+        icon: "https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/shadcnui.svg",
       },
     ],
-    website: "https://nebulapay.com",
   },
   {
-    slug: "skysentry",
-    project: "SkySentry Monitor",
+    slug: "rooms",
+    project: "Rooms (in progress)",
     description: [
-      "Engineered an IoT network observability dashboard capable of monitoring 10K+ distributed devices with live metrics and predictive alerts.",
-      "Developed a GoLang + gRPC backend to achieve low-latency bidirectional communication pipelines between sensors and cloud cluster.",
+      "Rooms is a room booking application for students",
+      "Implemented robust Authentication with my own Shado-Auth template",
     ],
     stack: [
       {
         name: "React",
-        icon: "https://cdn.simpleicons.org/react",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
       },
       {
-        name: "Golang",
-        icon: "https://cdn.simpleicons.org/golang",
+        name: "TRPC",
+        icon: "https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/trpc.svg",
       },
       {
-        name: "gRPC",
-        icon: "https://cdn.simpleicons.org/grpc",
+        name: "Hono",
+        icon: "https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/hono.svg",
       },
       {
-        name: "Prometheus",
-        icon: "https://cdn.simpleicons.org/prometheus",
+        name: "Bun",
+        icon: "https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/bun.svg",
       },
       {
-        name: "TimescaleDB",
-        icon: "https://cdn.simpleicons.org/timescaledb",
+        name: "PostgreSQL",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg",
       },
       {
-        name: "Kubernetes",
-        icon: "https://cdn.simpleicons.org/kubernetes",
+        name: "Drizzle ORM",
+        icon: "https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/drizzle.svg",
       },
     ],
   },

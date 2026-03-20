@@ -1,7 +1,7 @@
 import { getBlogs } from "@/utils/mdx";
 import { Metadata } from "next";
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export const metadata: Metadata = {
   title: "All Blogs",
@@ -15,42 +15,26 @@ export default async function AllBlogs() {
   );
 
   return (
-    <div className="space-y-6">
-      <section className="section-shell">
-        <h1 className="text-2xl font-semibold sm:text-3xl">Blog</h1>
-        <p className="text-muted-foreground mt-2 text-sm sm:text-base">
-          Notes on engineering, systems thinking, and practical decisions while
-          building software.
-        </p>
-      </section>
-      <section className="section-shell">
-        <div className="space-y-3">
-          {sortedBlogs.map((blog, idx) => (
-          <Link
-            className="bg-background/70 hover:border-primary/35 flex items-center justify-between rounded-xl border px-4 py-3 transition-colors"
-            key={idx}
-            href={`/blog/${blog.slug}`}
-          >
-            <div>
-              <p className="font-medium">{blog.title}</p>
-              <p className="text-muted-foreground mt-1 text-xs sm:text-sm">
-                Read article
-              </p>
-            </div>
-            <div className="flex items-center gap-3">
-              <p className="text-muted-foreground text-xs sm:text-sm">
-                {new Date(blog.date).toLocaleDateString("en-us", {
+    <div className="space-y-4">
+      <Card>
+        <CardHeader>
+          <CardTitle>Blog</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-3">
+          {sortedBlogs.map((blog) => (
+            <div key={blog.slug} className="flex items-center justify-between text-sm">
+              <Link href={`/blog/${blog.slug}`}>{blog.title}</Link>
+              <span className="text-muted-foreground">
+                {new Date(blog.date).toLocaleDateString("en-US", {
                   year: "numeric",
                   month: "short",
                   day: "numeric",
                 })}
-              </p>
-              <ArrowUpRight size={14} className="text-muted-foreground" />
+              </span>
             </div>
-          </Link>
-        ))}
-        </div>
-      </section>
+          ))}
+        </CardContent>
+      </Card>
     </div>
   );
 }
