@@ -1,60 +1,67 @@
 import Image from "next/image";
-import { Button } from "./ui/button";
+
+type Skill = {
+  name: string;
+  icon: string;
+};
+
+const groupedSkills: { title: string; skills: Skill[] }[] = [
+  {
+    title: "Frontend",
+    skills: [
+      { name: "Next.js", icon: "https://cdn.simpleicons.org/nextdotjs/ffffff" },
+      { name: "React", icon: "https://cdn.simpleicons.org/react" },
+      { name: "Redux", icon: "https://cdn.simpleicons.org/redux" },
+      { name: "TypeScript", icon: "https://cdn.simpleicons.org/typescript" },
+      { name: "Tailwind", icon: "https://cdn.simpleicons.org/tailwindcss" },
+    ],
+  },
+  {
+    title: "Backend",
+    skills: [
+      { name: "Node.js", icon: "https://cdn.simpleicons.org/nodedotjs" },
+      { name: "Express", icon: "https://cdn.simpleicons.org/express/ffffff" },
+      { name: "JWT", icon: "https://cdn.simpleicons.org/jsonwebtokens/ff5555" },
+      { name: "Firebase", icon: "https://cdn.simpleicons.org/firebase" },
+    ],
+  },
+  {
+    title: "Data & Tools",
+    skills: [
+      { name: "MongoDB", icon: "https://cdn.simpleicons.org/mongodb" },
+      { name: "PostgreSQL", icon: "https://cdn.simpleicons.org/postgresql" },
+      { name: "MySQL", icon: "https://cdn.simpleicons.org/mysql" },
+      { name: "Git", icon: "https://cdn.simpleicons.org/git" },
+      { name: "GitHub", icon: "https://cdn.simpleicons.org/github/ffffff" },
+      { name: "Postman", icon: "https://cdn.simpleicons.org/postman" },
+      { name: "Vercel", icon: "https://cdn.simpleicons.org/vercel/ffffff" },
+    ],
+  },
+];
 
 export default function Skills() {
-  const Stack = [
-    // Frontend
-    { name: "Next", icon: "https://cdn.simpleicons.org/nextdotjs/ffffff" },
-    { name: "React", icon: "https://cdn.simpleicons.org/react" },
-    { name: "Redux", icon: "https://cdn.simpleicons.org/redux" },
-    { name: "Typescript", icon: "https://cdn.simpleicons.org/typescript" },
-    { name: "Javascript", icon: "https://cdn.simpleicons.org/javascript" },
-
-    { name: "Tailwind", icon: "https://cdn.simpleicons.org/tailwindcss" },
-
-    // Backend
-    { name: "Node", icon: "https://cdn.simpleicons.org/nodedotjs" },
-    { name: "Express", icon: "https://cdn.simpleicons.org/express/ffffff" },
-
-    // Databases
-    { name: "MongoDB", icon: "https://cdn.simpleicons.org/mongodb" },
-    { name: "PostgreSQL", icon: "https://cdn.simpleicons.org/postgresql" },
-    { name: "MySQL", icon: "https://cdn.simpleicons.org/mysql" },
-
-    // Auth & Backend Tools
-    { name: "JWT", icon: "https://cdn.simpleicons.org/jsonwebtokens/ff5555" },
-    { name: "Firebase", icon: "https://cdn.simpleicons.org/firebase" },
-
-    // Version Control & Dev Tools
-    { name: "Git", icon: "https://cdn.simpleicons.org/git" },
-    { name: "GitHub", icon: "https://cdn.simpleicons.org/github/ffffff" },
-    { name: "Postman", icon: "https://cdn.simpleicons.org/postman" },
-    { name: "Shadcn UI", icon: "https://cdn.simpleicons.org/shadcnui/ffffff" },
-    { name: "Ant Design", icon: "https://cdn.simpleicons.org/antdesign" },
-    { name: "Bun", icon: "https://cdn.simpleicons.org/bun/ffffff" },
-
-    // Deployment
-    { name: "Vercel", icon: "https://cdn.simpleicons.org/vercel/ffffff" },
-  ];
-
   return (
-    <section className="mt-6">
-      <p className="text-lg sm:text-xl">+ Tech stack</p>
-      <div className="mt-4 grid grid-cols-4 gap-2 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-5">
-        {Stack.map((s) => (
-          <Button key={s.name} variant="outline" className="p-5">
-            <Image
-              unoptimized
-              src={s.icon}
-              alt={s.name}
-              width={18}
-              height={18}
-              className="sm:h-5 sm:w-5"
-            />
-            <span className="hidden text-center text-sm leading-tight sm:flex">
-              {s.name}
-            </span>
-          </Button>
+    <section className="section-shell">
+      <h2 className="section-title">Tech Stack</h2>
+      <div className="grid gap-4 md:grid-cols-3">
+        {groupedSkills.map((group) => (
+          <div key={group.title} className="bg-background/70 rounded-xl border p-4">
+            <h3 className="mb-3 text-sm font-semibold">{group.title}</h3>
+            <div className="flex flex-wrap gap-2">
+              {group.skills.map((skill) => (
+                <span key={skill.name} className="chip inline-flex items-center gap-2">
+                  <Image
+                    unoptimized
+                    src={skill.icon}
+                    alt={skill.name}
+                    width={14}
+                    height={14}
+                  />
+                  {skill.name}
+                </span>
+              ))}
+            </div>
+          </div>
         ))}
       </div>
     </section>

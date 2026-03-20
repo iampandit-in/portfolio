@@ -14,11 +14,11 @@ type Project = {
 
 export const projects: Project[] = [
   {
-    slug: "voxforge",
-    project: "VoxForge AI",
+    slug: "shadospace",
+    project: "Shadospace",
     description: [
-      "Designed a real-time collaborative document editor with AI-assisted writing and version insights using Next.js and WebSockets.",
-      "Implemented FastAPI microservices for authentication, semantic search, and autosave pipelines with Redis-based caching improving response latency by 64%.",
+      "Shadospace is a simple blog platform for developers to share their thoughts and ideas.",
+      "Implemented Authentication, CRUD operations, and a responsive UI using Next.js, Tailwind CSS, and Shadcn UI.",
     ],
     stack: [
       {
@@ -26,59 +26,57 @@ export const projects: Project[] = [
         icon: "https://cdn.simpleicons.org/nextdotjs/ffffff",
       },
       {
-        name: "FastAPI",
-        icon: "https://cdn.simpleicons.org/fastapi",
+        name: "Better Auth",
+        icon: "https://cdn.simpleicons.org/betterauth",
       },
-      {
-        name: "PostgreSQL",
-        icon: "https://cdn.simpleicons.org/postgresql/#4169E1",
-      },
-      {
-        name: "Redis",
-        icon: "https://cdn.simpleicons.org/redis",
-      },
-      {
-        name: "Socket",
-        icon: "https://cdn.simpleicons.org/socketdotio/ffffff",
-      },
-      {
-        name: "Docker",
-        icon: "https://cdn.simpleicons.org/docker",
-      },
-    ],
-    github: "https://github.com/iampandit-in/voxforge-ai",
-    website: "https://voxforge.ai",
-  },
-  {
-    slug: "nebulapay",
-    project: "NebulaPay",
-    description: [
-      "Built a production-grade payments and subscription platform supporting role-based access, multi-tenant architecture, and webhook billing events.",
-      "Implemented distributed event-driven architecture using Kafka to process asynchronous transactions and fraud detection alerts.",
-    ],
-    stack: [
       {
         name: "Node.js",
         icon: "https://cdn.simpleicons.org/nodedotjs",
       },
       {
-        name: "Express.js",
-        icon: "https://cdn.simpleicons.org/express",
+        name: "PostgreSQL",
+        icon: "https://cdn.simpleicons.org/postgresql",
       },
       {
-        name: "MongoDB",
-        icon: "https://cdn.simpleicons.org/mongodb",
+        name: "Drizzle ORM",
+        icon: "https://cdn.simpleicons.org/drizzle",
       },
       {
-        name: "JWT",
-        icon: "https://cdn.simpleicons.org/jwt",
-      },
-      {
-        name: "Kafka",
-        icon: "https://cdn.simpleicons.org/apachekafka",
+        name: "Shadcn UI",
+        icon: "https://cdn.simpleicons.org/shadcnui/ffffff",
       },
     ],
-    github: "https://github.com/iampandit-in/nebulapay",
+    website: "https://shadospace.in",
+  },
+  {
+    slug: "shado-auth",
+    project: "Shado Auth",
+    description: [
+      "Shado Auth is a simple authentication system for developers to authenticate their users.",
+      "Implemented robust and scalable authentication with Better Auth, and a responsive UI using Next.js, Tailwind CSS, and Shadcn UI.",
+    ],
+    stack: [
+      {
+        name: "Next.js",
+        icon: "https://cdn.simpleicons.org/nextdotjs/ffffff",
+      },
+      {
+        name: "PostgreSQL",
+        icon: "https://cdn.simpleicons.org/postgresql",
+      },
+      {
+        name: "Drizzle ORM",
+        icon: "https://cdn.simpleicons.org/drizzle",
+      },
+      {
+        name: "Better Auth",
+        icon: "https://cdn.simpleicons.org/betterauth",
+      },
+      {
+        name: "Shadcn ui",
+        icon: "https://cdn.simpleicons.org/shadcnui",
+      },
+    ],
     website: "https://nebulapay.com",
   },
   {
@@ -114,8 +112,6 @@ export const projects: Project[] = [
         icon: "https://cdn.simpleicons.org/kubernetes",
       },
     ],
-    github: "https://github.com/iampandit-in/skysentry-monitor",
-    website: "https://skysentry.ai",
   },
 ];
 
@@ -126,4 +122,3 @@ export const getProjectBySlug = (slug: string): Project | undefined => {
 export const getAllProjects = (): Project[] => {
   return projects;
 };
-

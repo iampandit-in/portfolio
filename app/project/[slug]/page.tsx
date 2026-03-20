@@ -58,63 +58,65 @@ export default async function ProjectPage({
 
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="mb-4 text-3xl font-bold">{project.project}</h1>
-        <div className="flex items-center gap-4">
+      <section className="section-shell">
+        <h1 className="text-2xl font-semibold sm:text-3xl">{project.project}</h1>
+        <div className="mt-4 flex items-center gap-3">
           {project.github && (
-            <Link
-              href={project.github}
-              target="_blank"
-              className="group hover:text-primary flex items-center gap-2 text-sm transition-all duration-300"
-            >
-              <Avatar className="h-5 w-5">
-                <AvatarImage
-                  src={"https://cdn.simpleicons.org/github/f5f5f5"}
-                />
-              </Avatar>
-              <span>GitHub</span>
-            </Link>
+            <Button variant="outline" size="sm" asChild>
+              <Link
+                href={project.github}
+                target="_blank"
+                className="group hover:text-primary flex items-center gap-2 text-sm transition-all duration-300"
+              >
+                <Avatar className="h-5 w-5">
+                  <AvatarImage
+                    src={"https://cdn.simpleicons.org/github/f5f5f5"}
+                  />
+                </Avatar>
+                <span>GitHub</span>
+              </Link>
+            </Button>
           )}
           {project.website && (
-            <Link
-              href={project.website}
-              target="_blank"
-              className="group hover:text-primary flex items-center gap-2 text-sm transition-all duration-300"
-            >
-              <Globe size={18} color="#8A8AFF" />
-              <span>Website</span>
-            </Link>
+            <Button variant="outline" size="sm" asChild>
+              <Link
+                href={project.website}
+                target="_blank"
+                className="group hover:text-primary flex items-center gap-2 text-sm transition-all duration-300"
+              >
+                <Globe size={18} color="#8A8AFF" />
+                <span>Website</span>
+              </Link>
+            </Button>
           )}
         </div>
-      </div>
+      </section>
 
-      <div>
+      <section className="section-shell">
         <h2 className="mb-3 text-xl font-semibold">About</h2>
         <ul className="list-inside list-disc space-y-2 text-sm sm:text-base">
           {project.description.map((desc, idx) => (
             <li key={idx}>{desc}</li>
           ))}
         </ul>
-      </div>
+      </section>
 
-      <div>
+      <section className="section-shell">
         <h2 className="mb-3 text-xl font-semibold">Tech Stack</h2>
-        <div className="text-muted-foreground flex flex-wrap items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2">
           {project.stack.map((tech) => (
-            <Button
+            <span
               key={tech.name}
-              variant="outline"
-              size="sm"
-              className="rounded-full text-xs sm:text-sm"
+              className="chip inline-flex items-center gap-2 text-xs sm:text-sm"
             >
               <Avatar className="h-3 w-3 sm:h-4 sm:w-4">
                 <AvatarImage src={tech.icon} alt={tech.name} />
               </Avatar>
               {tech.name}
-            </Button>
+            </span>
           ))}
         </div>
-      </div>
+      </section>
     </div>
   );
 }

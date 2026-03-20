@@ -16,6 +16,7 @@ const components = {
       sizes="100vw"
       style={{ width: "100%", height: "auto" }}
       {...(props as ImageProps)}
+      alt={props.alt ?? ""}
     />
   ),
 } satisfies MDXComponents;
